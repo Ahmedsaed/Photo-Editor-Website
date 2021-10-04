@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- http://getbootstrap.com/docs/5/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        
+        <!-- https://icons.getbootstrap.com -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+        <title>Edit</title>
+        
+        <!-- Custom CSS File -->
+        <link rel="stylesheet" href="\static\styles.css">
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top border-bottom">
+            <!-- NavBar Brand-->
+            <a class="navbar-brand mx-2" href="#editor">
+                <i class="bi bi-image-fill text-secondary"></i>
+                <span class="blue ">Photo</span>
+                <span class="green fw-bold">Editor</span>
+            </a>
+
+            <!-- NavBar mobile toggler-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- NavBar Items-->
+            <div class="collapse navbar-collapse mx-2 justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#editor">Editor</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#doc">Documentation</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+        </nav>
+
+        
+        <main>
+            <!-- Photo Editor -->
+            <section>
+                <div id="editor" class="display-5 text-muted ms-5 mb-3">Editor</div>
+                <div class="container py-3 px-5 border border-3 rounded text-center shadow bg-light">
+                    <!-- Nav pills -->
+                    <ul class="nav nav-pills mb-3 justify-content-center d-inline-flex rounded border border-2" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-tools" type="button">Tools</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-filters" type="button">Filters</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-effects" type="button">Effects</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <!-- Tools -->
+                        <div class="tab-pane fade show active" id="pills-tools">
+                            <div class="justify-content-center align-items-center d-inline rounded">
+                                <form class="row g-3 justify-content-center align-items-center" action="/d">
+                                    <!-- Select a tool-->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Tool:</span>
+                                            <select id="tools" class="form-select bg-light">
+                                                <option selected value="crop">Crop</option>
+                                                <option value="rotate">Rotate</option>
+                                                <option value="flip">Flip</option>
+                                                <option value="text">Text</option>
+                                                <option value="watermark">Watermark</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Crop -->
+                                    <div class="tool crop col-5">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Box:</span>
+                                            <input class="form-control" type="number" id="crop_left" placeholder="Left">
+                                            <input class="form-control" type="number" id="crop_top" placeholder="Top">
+                                            <input class="form-control" type="number" id="crop_right" placeholder="Right">
+                                            <input class="form-control" type="number" id="crop_bottom" placeholder="Bottom">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Rotate -->
+                                    <div class="col-2 rotate tool">
+                                        <input class="form-control" type="number" placeholder="Angle">
+                                    </div>
+                                    
+                                    <!-- Flip -->
+                                    <div class="col-auto flip tool">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Axis:</span>
+                                            <select id="axis" class="form-select bg-light">
+                                                <option selected value="0">Horizontal</option>
+                                                <option value="1">Vertical</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- text -->
+                                    <div class="col-2 text tool">
+                                        <input class="form-control" type="text" placeholder="text">
+                                    </div>
+                                    <div class="col-1 text tool">
+                                        <input class="form-control" type="text" placeholder="Font">
+                                    </div>
+                                    <div class="col-1 text tool" style="width: 10%">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Color:</span>
+                                            <input type="color" class="form-control form-control-color" id="textcolor" value="#000000" title="Text color?">
+                                        </div>
+                                    </div>
+                                    <div class="col-auto text tool">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Postion:</span>
+                                            <select id="text_postion" class="form-select bg-light">
+                                                <option selected value="top-left">Top-Left</option>
+                                                <option value="top-center">Top-Center</option>
+                                                <option value="top-right">Top-Right</option>
+                                                <option value="middle-left">Middel-Left</option>
+                                                <option value="middle-center">Middle-Center</option>
+                                                <option value="middle-right">Middle-Right</option>
+                                                <option value="bottom-left">Bottom-Left</option>
+                                                <option value="bottom-center">Bottom-Center</option>
+                                                <option value="bottom-right">Bottom-Right</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Watermark -->
+                                    <div class="col-auto watermark tool">
+                                        <input class="form-control" type="file" id="watermark_file">
+                                    </div>
+                                    <div class="col-2 watermark tool">
+                                        <input class="form-control" type="number" id="opacity" placeholder="Opacity">
+                                    </div>
+                                    <div class="col-auto watermark tool">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Postion:</span>
+                                            <select id="watermark_postion" class="form-select bg-light">
+                                                <option selected value="top-left">Top-Left</option>
+                                                <option value="top-center">Top-Center</option>
+                                                <option value="top-right">Top-Right</option>
+                                                <option value="middle-left">Middel-Left</option>
+                                                <option value="middle-center">Middle-Center</option>
+                                                <option value="middle-right">Middle-Right</option>
+                                                <option value="bottom-left">Bottom-Left</option>
+                                                <option value="bottom-center">Bottom-Center</option>
+                                                <option value="bottom-right">Bottom-Right</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Submit Button -->
+                                    <div class="col-1">
+                                        <button class="btn btn-outline-primary" type="submit">Apply</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Filters-->
+                        <div class="tab-pane fade" id="pills-filters">
+                            <div class="justify-content-center align-items-center d-inline rounded">
+                                <form class="row g-3 justify-content-center align-items-center" action="/d">
+                                    <!-- Select a Filter-->
+                                    <div class="col-auto">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Filter:</span>
+                                            <select id="filters" class="form-select bg-light">
+                                                <option selected value="brightness">Brightness</option>
+                                                <option value="contrast">Contrast</option>
+                                                <option value="saturation">Saturation</option>
+                                                <option value="vibrance">Vibrance</option>
+                                                <option value="sharpness">Sharpness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- brightness -->
+                                    <div class="filter brightness col-auto">
+                                        <div class="input-group border rounded">
+                                            <span class="input-group-text">Value:</span>
+                                            <input type="range" class="form-range mx-2" min="-50" max="50" style="width: 50%; height: auto;" id="brightness_range">
+                                            <input type="number" class="form-control" min="-50" max="50" id="brightness_value">
+                                        </div>
+                                    </div>
+
+                                    <!-- contrast -->
+                                    <div class="filter contrast col-3">
+                                        <div class="input-group border rounded">
+                                            <span class="input-group-text">Value:</span>
+                                            <input type="range" class="form-range mx-2" min="-50" max="50" style="width: 50%; height: auto;" id="brightness_range">
+                                            <input type="number" class="form-control" min="-50" max="50" id="brightness_value">
+                                        </div>
+                                    </div>
+
+                                    <!-- saturation -->
+                                    <div class="filter saturation col-3">
+                                        <div class="input-group border rounded">
+                                            <span class="input-group-text">Value:</span>
+                                            <input type="range" class="form-range mx-2" min="-50" max="50" style="width: 50%; height: auto;" id="brightness_range">
+                                            <input type="number" class="form-control" min="-50" max="50" id="brightness_value">
+                                        </div>
+                                    </div>
+
+                                    <!-- vibrance -->
+                                    <div class="filter vibrance col-3">
+                                        <div class="input-group border rounded">
+                                            <span class="input-group-text">Value:</span>
+                                            <input type="range" class="form-range mx-2" min="-50" max="50" style="width: 50%; height: auto;" id="brightness_range">
+                                            <input type="number" class="form-control" min="-50" max="50" id="brightness_value">
+                                        </div>
+                                    </div>
+
+                                    <!-- Sharpness -->
+                                    <div class="filter Sharpness col-3">
+                                        <div class="input-group border rounded">
+                                            <span class="input-group-text">Value:</span>
+                                            <input type="range" class="form-range mx-2" min="-50" max="50" style="width: 50%; height: auto;" id="brightness_range">
+                                            <input type="number" class="form-control" min="-50" max="50" id="brightness_value">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Effects-->
+                        <div class="tab-pane fade" id="pills-effects">
+                            
+                        </div>
+                    </div>
+
+                    <hr/> <!-- Horizontal Line -->
+                    
+                    <!-- Preview uploaded photo -->
+                    <div class="row g-3 my-3 justify-content-center align-items-center">
+                        <div class="col-6 m-2 d-block">
+                            <input id="upload-btn" hidden type="file">
+                            <span class="tt" data-bs-placement="bottom" onclick="upload()" title="Uploaded Image">
+                                <div>
+                                    <canvas id="canvas" hidden class="img-fluid" width="500" height="500"></canvas>
+                                    <img src="\sampleImages\beach.jpg" class="img-fluid"  id="preview"></img:id>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <hr/> <!-- Horizontal Line -->
+                    
+                    <!-- Control Buttons -->
+                    <div class="row mt-3 justify-content-center align-items-center">
+                        <div class="col m-2 justify-content-between d-flex">
+                            <span class="tt" data-bs-placement="bottom" title="Revert">
+                                <button id="revert-btn" class="btn btn-outline-primary">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
+                                </button>
+                            </span>
+                            <button id="download-btn" class="btn btn-outline-primary">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Documentation -->
+            <section id="doc">
+                <div class="display-5 text-muted ms-5">Documentation</div>
+            </section>
+        </main>
+
+        <!-- <span class="tt" data-bs-placement="bottom" title="Enter an email address we can reply to."></span> -->
+
+
+        <!-- side panel / offcanvas -->
+        <!-- 
+            <a href="#sidebar" class="d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar">
+                Explore my other books
+            </a>
+        
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebar-label">
+                <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="sidebar-label">My Other Books</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In minima ducimus excepturi quasi tempore fugit quis voluptatibus aut error possimus, tenetur natus magni quam voluptatem quae eligendi repudiandae delectus eaque!</p>
+                </div>
+            </div>
+        -->
+
+        <!-- http://getbootstrap.com/docs/5/ -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        
+        <!-- CamanJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.0.0/caman.full.min.js"></script>
+
+        <!-- Custom JS File-->
+        <script src="\scripts\script.js"></script>
+    </body>
+</html>
