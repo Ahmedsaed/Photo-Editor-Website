@@ -98,8 +98,8 @@ document.getElementById("filters").onchange = function () {
 };
 
 // update brightness controls
-let slider = document.getElementById("brightness_range");
-let input_value = document.getElementById("brightness_value");
+const slider = document.getElementById("brightness_range");
+const input_value = document.getElementById("brightness_value");
 let brightness_value = 0;
 
 function updateBrightnessValue(controller) {
@@ -139,12 +139,18 @@ Caman.Event.listen("processComplete", function (job) {
 
 // Zoom In/Out
 let zoom = 6;
+const zoomInBtn = document.getElementById("zoomInBtn");
+const zoomOutBtn = document.getElementById("zoomOutBtn");
+const zoomValue = document.getElementById("zoom_value");
+updateZoomBtns();
+
 function zoomIn() {
 	column = document.getElementById("preview")
 
 	column.classList.remove("col-" + zoom);
 	zoom++;
 	column.classList.add("col-" + zoom);
+	updateZoomBtns();
 }
 
 function zoomOut() {
@@ -153,4 +159,20 @@ function zoomOut() {
 	column.classList.remove("col-" + zoom);
 	zoom--;
 	column.classList.add("col-" + zoom);
+	updateZoomBtns();
+}
+
+function updateZoomBtns() {
+	if (zoom == 12) {
+		zoomInBtn.disabled = true;
+	} 
+	else if (zoom == 1) {
+		zoomOutBtn.disabled = true;
+	}
+	else {
+		zoomInBtn.disabled = false;
+		zoomOutBtn.disabled = false;
+	}
+
+	zoomValue.value = parseInt(zoom/12 * 100) + "%";
 }
