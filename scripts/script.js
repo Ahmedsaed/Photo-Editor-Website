@@ -3,7 +3,7 @@ const downloadBtn = document.getElementById("download-btn");
 const uploadBtn = document.getElementById("upload-btn");
 const revertBtn = document.getElementById("revert-btn");
 const canvas = document.getElementById("canvas");
-const canvas_ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 const image = document.getElementById("preview");
 
 let fileType;
@@ -38,26 +38,20 @@ uploadBtn.addEventListener("change", () => {
             // Set image src
             img.src = reader.result;
             
+            
             // Add to canvas
             img.onload = function() {
                 canvas.width = img.width;
                 canvas.height = img.height;
-                canvas_ctx.imageSmoothingEnabled = false;
-                canvas_ctx.drawImage(img, 0, 0, img.width, img.height);
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                canvas.removeAttribute("data-caman-id");
 
                 // Show resized image in preview element
-                update_preview();
+                //update_preview();
             };
     }, false);
-});
 
-// Update the preview <img> image to the canvas
-function update_preview() {
-    canvas.removeAttribute("data-caman-id");
-    var dataurl = canvas.toDataURL();
-    image.src = dataurl;
-    console.log("updating");
-}
+});
 
 // Add a bootstrap toooltip to every tag that has "tt" class
 const tooltips = document.querySelectorAll(".tt");
@@ -99,15 +93,23 @@ document.getElementById("filters").onchange = function () {
 };
 
 // Revert Filters
-revertBtn.addEventListener("click", e => {
+revertBtn.addEventListener("click", (e) => {
     Caman("#canvas", img, function() {
-      this.revert(function() {
-        update_preview();
-      });
+      this.revert();
     });
-  });
+});
 
-// <---------------------------------------------------------------Debugging and Handling jobs---------------------------------------------------------->
+// Download edited Image
+downloadBtn.addEventListener("click", (e) => {
+    const dImage = canvas.toDataURL();
+    const link = document.createElement('a');
+
+    link.href = dImage;
+    link.download = fileName;
+    link.click();
+})
+
+// <-----------------------------------------------------Debugging and Handling jobs-------------------------------------------------->
 
 // Listen to all CamanJS instances
 Caman.Event.listen("processStart", function (job) {
@@ -118,7 +120,7 @@ Caman.Event.listen("processComplete", function (job) {
     console.log("Completed:", job.name);
 });
 
-// <---------------------------------------------------------------------Zoom In/Out----------------------------------------------------------------->
+// <-----------------------------------------------------------Zoom In/Out-------------------------------------------------------->
 
 let zoom = 6;
 const zoomInBtn = document.getElementById("zoomInBtn");
@@ -159,9 +161,9 @@ function updateZoomBtns() {
 	zoomValue.value = parseInt(zoom/12 * 100) + "%";
 }
 
-// <---------------------------------------------------------------------Filters--------------------------------------------------------------------->
+// <------------------------------------------------------------Image manipulation------------------------------------------------>
 
-// Brightness
+// Brightness Filter
 const input_value = document.getElementById("brightness_value");
 
 function updateBrightnessValue(controller) {
@@ -175,11 +177,35 @@ function updateBrightnessValue(controller) {
 	}
 }
 
-// Apply brightness filter on image
 function brightness(amount) {
     Caman("#canvas", function() {
-        this.brightness(amount).render(function() {
-            update_preview();
-        });
+        this.brightness(amount).render();
     });
 }
+
+function resize(x, y) {
+    Caman("#canvas", function () {
+        this.resize({
+            width: x,
+            height: y
+          });
+      
+        // You still have to call render!
+        this.render();
+    });
+}
+
+// TOFIX
+function sepia() {
+    Caman("#canvas", function () {
+        this.channels({
+          red: 0.393 * red + 0.769 * green + 0.189 * blue,
+          green: 0.349 * red + 0.686 * green + 0.168 * blue,
+          blue: 0.272 * red + 0.534 * green + 0.131 * blue
+        }).render();
+      });
+}
+
+
+
+
