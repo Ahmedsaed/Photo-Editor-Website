@@ -72,11 +72,11 @@
                           <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-effects" type="button">Effects</button>
                         </li>
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-content" id="pills-tabContent" style="pointer-events: none; opacity: 0.4;">
                         <!-- Tools -->
                         <div class="tab-pane fade show active" id="pills-tools">
                             <div class="justify-content-center align-items-center d-inline rounded">
-                                <form class="row g-3 justify-content-center align-items-center">
+                                <form class="row g-3 justify-content-center align-items-center" action="javascript:void(0);">
                                     <!-- Select a tool-->
                                     <div class="col-auto">
                                         <div class="input-group">
@@ -183,7 +183,7 @@
                         <!-- Filters-->
                         <div class="tab-pane fade" id="pills-filters">
                             <div class="justify-content-center align-items-center d-inline rounded">
-                                <form class="row g-3 justify-content-center align-items-center" action="#">
+                                <form class="row g-3 justify-content-center align-items-center" action="javascript:void(0);">
                                     <!-- Select a Filter-->
                                     <div class="col-auto">
                                         <div class="input-group">
@@ -193,7 +193,6 @@
                                                 <option value="contrast">Contrast</option>
                                                 <option value="saturation">Saturation</option>
                                                 <option value="vibrance">Vibrance</option>
-                                                <option value="sharpness">Sharpness</option>
                                             </select>
                                         </div>
                                     </div>
@@ -202,9 +201,9 @@
                                     <div class="filter brightness col-auto">
                                         <span class="tt" data-bs-placement="bottom" title="Value">
                                             <div class="input-group border rounded">
-                                                <button class="btn btn-primary" onclick="updateBrightnessValue('-')">-</button>
+                                                <button class="btn btn-primary" onclick="brightness('-')">-</button>
                                                 <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary" onclick="updateBrightnessValue('+')">+</bu1tton>
+                                                <button class="btn btn-primary" onclick="brightness('+')">+</bu1tton>
                                             </div>
                                         </span>
                                     </div>
@@ -213,9 +212,9 @@
                                     <div class="filter contrast col-auto">
                                         <span class="tt" data-bs-placement="bottom" title="Value">
                                             <div class="input-group border rounded">
-                                                <button class="btn btn-primary">-</button>
-                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary">+</bu1tton>
+                                                <button class="btn btn-primary" onclick="contrast('-')">-</button>
+                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="contrast_value">
+                                                <button class="btn btn-primary" onclick="contrast('+')">+</bu1tton>
                                             </div>
                                         </span>
                                     </div>
@@ -224,9 +223,9 @@
                                     <div class="filter saturation col-auto">
                                         <span class="tt" data-bs-placement="bottom" title="Value">
                                             <div class="input-group border rounded">
-                                                <button class="btn btn-primary">-</button>
-                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary">+</bu1tton>
+                                                <button class="btn btn-primary" onclick="saturation('-')">-</button>
+                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="saturation_value">
+                                                <button class="btn btn-primary" onclick="saturation('+')">+</bu1tton>
                                             </div>
                                         </span>
                                     </div>
@@ -235,26 +234,16 @@
                                     <div class="filter vibrance col-auto">
                                         <span class="tt" data-bs-placement="bottom" title="Value">
                                             <div class="input-group border rounded">
-                                                <button class="btn btn-primary">-</button>
-                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary">+</bu1tton>
-                                            </div>
-                                        </span>
-                                    </div>
-
-                                    <!-- Sharpness -->
-                                    <div class="filter sharpness col-auto">
-                                        <span class="tt" data-bs-placement="bottom" title="Value">
-                                            <div class="input-group border rounded">
-                                                <button class="btn btn-primary">-</button>
-                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary">+</bu1tton>
+                                                <button class="btn btn-primary" onclick="vibrance('-')">-</button>
+                                                <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="vibrance_value">
+                                                <button class="btn btn-primary" onclick="vibrance('+')">+</bu1tton>
                                             </div>
                                         </span>
                                     </div>
                                 </form>
                             </div>
                         </div>
+
                         <!-- Effects-->
                         <div class="tab-pane fade" id="pills-effects">
                             
@@ -270,7 +259,7 @@
                             <canvas id="canvas" onclick="upload()"></canvas>
                         </div>
                     </div>
-                    
+                     
                     <hr/> <!-- Horizontal Line -->
                     
                     <!-- Control Buttons -->
@@ -279,7 +268,7 @@
                             <!-- Revert Button-->
                             <span class="tt" data-bs-placement="bottom" title="Revert">
                                 <div>
-                                    <button id="revert-btn" class="btn btn-outline-primary">
+                                    <button id="revert-btn" disabled class="btn btn-outline-primary">
                                         <i class="bi bi-arrow-counterclockwise"></i>
                                     </button>
                                 </div>
@@ -287,7 +276,7 @@
                         </div>
 
                         <!-- Zoom In/Out Buttons-->
-                        <div class="col-auto m-2">
+                        <div class="col-auto m-2" id="zoomBtns" style="pointer-events: none; opacity: 0.4;">
                             <span class="tt" data-bs-placement="bottom" title="Zoom">
                                 <div class="input-group border rounded">
                                     <button id="zoomOutBtn" class="btn btn-primary" onclick="zoomOut()">
@@ -305,7 +294,7 @@
                         <div class="col-auto m-2">
                             <span class="tt" data-bs-placement="bottom" title="Download">
                                 <div>
-                                    <button id="download-btn" class="btn btn-outline-primary">
+                                    <button id="download-btn" disabled class="btn btn-outline-primary">
                                         <i class="bi bi-download"></i>
                                     </button>
                                 </div>

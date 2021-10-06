@@ -17,6 +17,15 @@ function upload() {
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
+    // clear previous filters/efftects
+    revertBtn.click();
+
+    // enable buttons
+    downloadBtn.disabled = false;
+    revertBtn.disabled = false;
+    document.getElementById("pills-tabContent").style = "";
+    document.getElementById("zoomBtns").style = "";
+
     // Get File
     const file = uploadBtn.files[0];
     
@@ -46,8 +55,9 @@ uploadBtn.addEventListener("change", () => {
                 ctx.drawImage(img, 0, 0, img.width, img.height);
                 canvas.removeAttribute("data-caman-id");
 
-                // Show resized image in preview element
-                //update_preview();
+                Caman("#canvas", img, function() {
+                    this.render();
+                });
             };
     }, false);
 
@@ -94,6 +104,10 @@ document.getElementById("filters").onchange = function () {
 
 // Revert Filters
 revertBtn.addEventListener("click", (e) => {
+    contrast_value.value = 0; 
+    vibrance_value.value = 0;
+    brightnees_value.value = 0;
+    saturation_value.value = 0;
     Caman("#canvas", img, function() {
       this.revert();
     });
@@ -163,28 +177,93 @@ function updateZoomBtns() {
 
 // <------------------------------------------------------------Image manipulation------------------------------------------------>
 
-// Brightness Filter
-const input_value = document.getElementById("brightness_value");
+const brightnees_value = document.getElementById("brightness_value");
+const contrast_value = document.getElementById("contrast_value");
+const saturation_value = document.getElementById("saturation_value");
+const vibrance_value = document.getElementById("vibrance_value");
 
-function updateBrightnessValue(controller) {
+// Brightness Filter
+function brightness(controller) {
 	if (controller == "+") {
-		input_value.value = parseInt(input_value.value) + 5;
-		brightness(5);
+		Caman("#canvas", img, function() {
+            this.brightness(5).render(function() {
+                brightnees_value.value = parseInt(brightnees_value.value) + 5;
+            });
+        });
 	}
 	else if (controller == "-") {
-		input_value.value = parseInt(input_value.value) - 5;
-		brightness(-5);
+		Caman("#canvas", img, function() {
+            this.brightness(-5).render(function() {
+                brightnees_value.value = parseInt(brightnees_value.value) - 5;
+            });
+        });
 	}
 }
 
-function brightness(amount) {
-    Caman("#canvas", function() {
-        this.brightness(amount).render();
+// contrast filter
+function contrast(controller) {
+	if (controller == "+") {
+        Caman("#canvas", img, function() {
+            this.contrast(5).render(function() {
+                contrast_value.value = parseInt(contrast_value.value) + 5;
+            });
+        });
+	}
+	else if (controller == "-") {
+        Caman("#canvas", img, function() {
+            this.contrast(-5).render(function() {
+                contrast_value.value = parseInt(contrast_value.value) - 5;
+            });
+        });
+	}
+}
+
+// saturation filter
+function saturation(controller) {
+	if (controller == "+") {
+        Caman("#canvas", img, function() {
+            this.saturation(5).render(function() {
+                saturation_value.value = parseInt(saturation_value.value) + 5;
+            });
+        });
+	}
+	else if (controller == "-") {
+        Caman("#canvas", img, function() {
+            this.saturation(-5).render(function() {
+                saturation_value.value = parseInt(saturation_value.value) - 5;
+            });
+        });
+	}
+}
+
+// vibrance filter
+function vibrance(controller) {
+	if (controller == "+") {
+        Caman("#canvas", img, function() {
+            this.vibrance(5).render(function() {
+                vibrance_value.value = parseInt(vibrance_value.value) + 5;                
+            });
+        });
+	}
+	else if (controller == "-") {
+        Caman("#canvas", img, function() {
+            this.vibrance(-5).render(function() {
+                vibrance_value.value = parseInt(vibrance_value.value) - 5;
+            });
+        });
+	}
+}
+function sepia() {
+    Caman("#canvas", img, function () {
+        this.sepia(50).render();
     });
 }
 
+// <---------------------------------------------------------------------------------------------------------------------------------->
+
+// TOFIX
 function resize(x, y) {
-    Caman("#canvas", function () {
+    Caman("#canvas", img, function () {
         this.resize({
             width: x,
             height: y
@@ -197,7 +276,7 @@ function resize(x, y) {
 
 // TOFIX
 function sepia() {
-    Caman("#canvas", function () {
+    Caman("#canvas", img, function () {
         this.channels({
           red: 0.393 * red + 0.769 * green + 0.189 * blue,
           green: 0.349 * red + 0.686 * green + 0.168 * blue,
