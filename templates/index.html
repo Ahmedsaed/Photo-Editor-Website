@@ -34,20 +34,24 @@
             </button>
 
             <!-- NavBar Items-->
-            <div class="collapse navbar-collapse mx-2 justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link btn btn-outline-primary mx-1" href="#editor">Editor</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link btn btn-outline-primary mx-1" href="#doc">How To Use</a>
-                  </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-              </div>
+            <div class="collapse navbar-collapse mx-2 justify-content-between" id="navbarSupportedContent">
+                <div>
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary mx-1" href="#editor">Editor</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary mx-1" href="#doc">How To Use</a>
+                      </li>
+                    </ul>
+                </div>
+                <div>
+                    <form class="d-flex">
+                        <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </nav>
 
         
@@ -72,7 +76,7 @@
                         <!-- Tools -->
                         <div class="tab-pane fade show active" id="pills-tools">
                             <div class="justify-content-center align-items-center d-inline rounded">
-                                <form class="row g-3 justify-content-center align-items-center" action="/d">
+                                <form class="row g-3 justify-content-center align-items-center">
                                     <!-- Select a tool-->
                                     <div class="col-auto">
                                         <div class="input-group">
@@ -179,7 +183,7 @@
                         <!-- Filters-->
                         <div class="tab-pane fade" id="pills-filters">
                             <div class="justify-content-center align-items-center d-inline rounded">
-                                <form class="row g-3 justify-content-center align-items-center" action="/d">
+                                <form class="row g-3 justify-content-center align-items-center" action="#">
                                     <!-- Select a Filter-->
                                     <div class="col-auto">
                                         <div class="input-group">
@@ -198,9 +202,9 @@
                                     <div class="filter brightness col-auto">
                                         <span class="tt" data-bs-placement="bottom" title="Value">
                                             <div class="input-group border rounded">
-                                                <button class="btn btn-primary">-</button>
+                                                <button class="btn btn-primary" onclick="updateBrightnessValue('-')">-</button>
                                                 <input type="text" class="form-control text-center" style="width: 50px;" value="0" id="brightness_value">
-                                                <button class="btn btn-primary">+</bu1tton>
+                                                <button class="btn btn-primary" onclick="updateBrightnessValue('+')">+</bu1tton>
                                             </div>
                                         </span>
                                     </div>
@@ -261,12 +265,12 @@
                     
                     <!-- Preview uploaded/edited photo -->
                     <div class="row g-3 my-3 justify-content-center align-items-center">
-                        <div class="col-6 m-2 d-block" id="preview">
+                        <div class="col-6 m-2 d-block" id="preview_img">
                             <input id="upload-btn" hidden type="file">
                             <span class="tt" data-bs-placement="bottom" onclick="upload()" title="Uploaded Image">
                                 <div>
-                                    <canvas id="canvas" hidden class="img-fluid" width="500" height="500"></canvas>
-                                    <img src="\sampleImages\beach.jpg" class="img-fluid img-thumbnail"  id="preview"></img:id>
+                                    <canvas id="canvas" hidden width="500" height="500"></canvas>
+                                    <img src="\sampleImages\beach.jpg" class="img-fluid img-thumbnail" id="preview"></img>
                                 </div>
                             </span>
                         </div>

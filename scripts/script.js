@@ -4,6 +4,7 @@ const uploadBtn = document.getElementById("upload-btn");
 const revertBtn = document.getElementById("revert-btn");
 const canvas = document.getElementById("canvas");
 const canvas_ctx = canvas.getContext("2d");
+const image = document.getElementById("preview");
 
 let fileType;
 let img = new Image();
@@ -11,51 +12,51 @@ let fileName = "";
 
 // Request image file when the canvas is clicked
 function upload() {
-  uploadBtn.click();
+    uploadBtn.click();
 }
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
-  // Get File
-  const file = uploadBtn.files[0];
-  fileType = file.type;
-  // Init FileReader API
-  const reader = new FileReader();
+    // Get File
+    const file = uploadBtn.files[0];
+    
+    // Init FileReader API
+    const reader = new FileReader();
+  
+    // Check for file
+    if (file) {
+      // Set file name and type
+      fileName = file.name;
+      fileType = file.type;
 
-  // Check for file
-  if (file) {
-    // Set file name
-    fileName = file.name;
-    // Read data as URL
-    reader.readAsDataURL(file);
-  }
+      // Read data as URL
+      reader.readAsDataURL(file);
+    }
 
-  // Add image to canvas
-  reader.addEventListener(
-    "load",
-    () => {
-      // Set image src
-      img.src = reader.result;
+    // Add image to canvas
+    reader.addEventListener("load", () => {
+            // Set image src
+            img.src = reader.result;
+            
+            // Add to canvas
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                canvas_ctx.imageSmoothingEnabled = false;
+                canvas_ctx.drawImage(img, 0, 0, img.width, img.height);
 
-      // On image load add to canvas
-      img.onload = function () {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas_ctx.imageSmoothingEnabled = false;
-        canvas_ctx.drawImage(img, 0, 0, img.width, img.height);
-
-        // Show resized image in preview element
-        update_preview();
-      };
-    },
-    false
-  );
+                // Show resized image in preview element
+                update_preview();
+            };
+    }, false);
 });
 
 // Update the preview <img> image to the canvas
 function update_preview() {
-  var dataurl = canvas.toDataURL(fileType);
-  document.getElementById("preview").src = dataurl;
+    canvas.removeAttribute("data-caman-id");
+    var dataurl = canvas.toDataURL();
+    image.src = dataurl;
+    console.log("updating");
 }
 
 // Add a bootstrap toooltip to every tag that has "tt" class
@@ -65,21 +66,21 @@ tooltips.forEach((t) => {
 });
 
 // A function that takes a class name and a bool "state" to hide/show tags
-function hide(state, cls) {
+function hidden(state, cls) {
   var tools = document.getElementsByClassName(cls);
   for (let i = 0; i < tools.length; i++) {
     tools[i].hidden = state;
   }
 }
 
-hide(true, "tool");
-hide(true, "filter");
-hide(false, "crop");
-hide(false, "brightness");
+hidden(true, "tool");
+hidden(true, "filter");
+hidden(false, "crop");
+hidden(false, "brightness");
 
 // Show tool requirments
 document.getElementById("tools").onchange = function () {
-  hide(true, "tool");
+  hidden(true, "tool");
 
   var elements = document.getElementsByClassName(this.value);
   for (let i = 0; i < elements.length; i++) {
@@ -89,7 +90,7 @@ document.getElementById("tools").onchange = function () {
 
 // Show filter requirments
 document.getElementById("filters").onchange = function () {
-  hide(true, "filter");
+  hidden(true, "filter");
 
   var elements = document.getElementsByClassName(this.value);
   for (let i = 0; i < elements.length; i++) {
@@ -97,47 +98,28 @@ document.getElementById("filters").onchange = function () {
   }
 };
 
-// update brightness controls
-const slider = document.getElementById("brightness_range");
-const input_value = document.getElementById("brightness_value");
-let brightness_value = 0;
-
-function updateBrightnessValue(controller) {
-  // Sync values between slider and input field
-  if (controller == "input") {
-    slider.value = input_value.value;
-  } else if (controller == "slider") {
-    input_value.value = slider.value;
-  }
-  // Apply Filter
-  brightness(slider.value);
-
-  brightness_value = parseInt(slider.value);
-}
-
-// Apply brightness filter on image
-function brightness(amount) {
-  Caman(canvas, function () {
-    // Revert image brightness
-    this.brightness(-1 * brightness_value);
-
-    // Apply new brightness filter
-    this.brightness(amount).render();
-    update_preview();
+// Revert Filters
+revertBtn.addEventListener("click", e => {
+    Caman("#canvas", img, function() {
+      this.revert(function() {
+        update_preview();
+      });
+    });
   });
-}
+
+// <---------------------------------------------------------------Debugging and Handling jobs---------------------------------------------------------->
 
 // Listen to all CamanJS instances
 Caman.Event.listen("processStart", function (job) {
-  console.log("Start:", job.name);
+    console.log("Start:", job.name);
 });
 
-// Listen to all CamanJS instances
 Caman.Event.listen("processComplete", function (job) {
-  console.log("Completed:", job.name, brightness_value);
+    console.log("Completed:", job.name);
 });
 
-// Zoom In/Out
+// <---------------------------------------------------------------------Zoom In/Out----------------------------------------------------------------->
+
 let zoom = 6;
 const zoomInBtn = document.getElementById("zoomInBtn");
 const zoomOutBtn = document.getElementById("zoomOutBtn");
@@ -145,7 +127,7 @@ const zoomValue = document.getElementById("zoom_value");
 updateZoomBtns();
 
 function zoomIn() {
-	column = document.getElementById("preview")
+	column = document.getElementById("preview_img")
 
 	column.classList.remove("col-" + zoom);
 	zoom++;
@@ -154,7 +136,7 @@ function zoomIn() {
 }
 
 function zoomOut() {
-	column = document.getElementById("preview")
+	column = document.getElementById("preview_img")
 
 	column.classList.remove("col-" + zoom);
 	zoom--;
@@ -175,4 +157,29 @@ function updateZoomBtns() {
 	}
 
 	zoomValue.value = parseInt(zoom/12 * 100) + "%";
+}
+
+// <---------------------------------------------------------------------Filters--------------------------------------------------------------------->
+
+// Brightness
+const input_value = document.getElementById("brightness_value");
+
+function updateBrightnessValue(controller) {
+	if (controller == "+") {
+		input_value.value = parseInt(input_value.value) + 5;
+		brightness(5);
+	}
+	else if (controller == "-") {
+		input_value.value = parseInt(input_value.value) - 5;
+		brightness(-5);
+	}
+}
+
+// Apply brightness filter on image
+function brightness(amount) {
+    Caman("#canvas", function() {
+        this.brightness(amount).render(function() {
+            update_preview();
+        });
+    });
 }
