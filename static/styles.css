@@ -1,17 +1,22 @@
-section {
-  padding: 10px 0;
+section
+{
+    padding: 10px 0;
 }
-nav .navbar-brand {
-  /* size for brand */
-  font-size: xx-large;
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
 }
-nav .navbar-brand .blue {
-  color: #537fbe;
+nav .navbar-brand .blue
+{
+    color: #537fbe;
 }
-nav .navbar-brand .green {
-  color: #2e944b;
+nav .navbar-brand .green
+{
+    color: #2e944b;
 }
 canvas {
-  margin: auto;
-  background: #ececec;
+    background: #ececec;
 }
+
+
