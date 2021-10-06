@@ -253,6 +253,8 @@ function vibrance(controller) {
         });
 	}
 }
+
+// sepia effect
 function sepia() {
     Caman("#canvas", img, function () {
         this.sepia(50).render();
@@ -260,31 +262,5 @@ function sepia() {
 }
 
 // <---------------------------------------------------------------------------------------------------------------------------------->
-
-// TOFIX
-function resize(x, y) {
-    Caman("#canvas", img, function () {
-        this.resize({
-            width: x,
-            height: y
-          });
-      
-        // You still have to call render!
-        this.render();
-    });
-}
-
-// TOFIX
-function sepia() {
-    Caman("#canvas", img, function () {
-        this.channels({
-          red: 0.393 * red + 0.769 * green + 0.189 * blue,
-          green: 0.349 * red + 0.686 * green + 0.168 * blue,
-          blue: 0.272 * red + 0.534 * green + 0.131 * blue
-        }).render();
-      });
-}
-
-
 
 
