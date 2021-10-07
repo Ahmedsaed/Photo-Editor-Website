@@ -15,6 +15,11 @@ function upload() {
     uploadBtn.click();
 }
 
+document.getElementById("pills-tabContent").style = "";
+document.getElementById("zoomBtns").style = "";
+
+
+
 // Upload File
 uploadBtn.addEventListener("change", () => {
     // clear previous filters/efftects
@@ -23,8 +28,6 @@ uploadBtn.addEventListener("change", () => {
     // enable buttons
     downloadBtn.disabled = false;
     revertBtn.disabled = false;
-    document.getElementById("pills-tabContent").style = "";
-    document.getElementById("zoomBtns").style = "";
 
     // Get File
     const file = uploadBtn.files[0];
@@ -391,10 +394,13 @@ function concentrate() {
     });
 }
 
-// boxBlur effect
-function boxBlur() {
+// stackBlur effect
+function stackBlur() {
     Caman("#canvas", img, function () {
-        this.boxBlur().render();
+        console.log("Started: stackBlur");
+        this.stackBlur(15).render(function() {
+            console.log("Completed: stackBlur");
+        });
     });
 }
 
