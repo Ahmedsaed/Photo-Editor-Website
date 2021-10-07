@@ -15,13 +15,21 @@ function upload() {
     uploadBtn.click();
 }
 
-document.getElementById("pills-tabContent").style = "";
-document.getElementById("zoomBtns").style = "";
-
-
+function enableBtns(state) {
+    if (state == true) {
+        document.getElementById("zoomBtns").style = "";
+        document.getElementById("pills-tabContent").style = "";
+    } else {
+        document.getElementById("zoomBtns").style = "pointer-events: none; opacity: 0.4;";
+        document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
+    }
+}
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
+    // enable buttons
+    enableBtns(true);
+
     // clear previous filters/efftects
     revertBtn.click();
 
@@ -131,10 +139,12 @@ downloadBtn.addEventListener("click", (e) => {
 // Listen to all CamanJS instances
 Caman.Event.listen("processStart", function (job) {
     console.log("Start:", job.name);
+    enableBtns(false);
 });
 
 Caman.Event.listen("processComplete", function (job) {
     console.log("Completed:", job.name);
+    enableBtns(true);
 });
 
 function enableDebugging() {
