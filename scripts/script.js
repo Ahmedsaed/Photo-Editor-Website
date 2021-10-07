@@ -134,6 +134,10 @@ Caman.Event.listen("processComplete", function (job) {
     console.log("Completed:", job.name);
 });
 
+function enableDebugging() {
+    Caman.DEBUG = true;
+}
+
 // <-----------------------------------------------------------Zoom In/Out-------------------------------------------------------->
 
 let zoom = 6;
@@ -258,6 +262,139 @@ function vibrance(controller) {
 function sepia() {
     Caman("#canvas", img, function () {
         this.sepia(50).render();
+    });
+}
+
+// vintage effect
+function vintage() {
+    Caman("#canvas", img, function () {
+        this.vintage().render();
+    });
+}
+
+// lomo effect
+function lomo() {
+    Caman("#canvas", img, function () {
+        this.lomo().render();
+    });
+}
+
+// greyscale effect
+function greyscale() {
+    Caman("#canvas", img, function () {
+        this.greyscale().render();
+    });
+}
+
+// clarity effect
+function clarity() {
+    Caman("#canvas", img, function () {
+        this.clarity().render();
+    });
+}
+
+// sinCity effect
+function sinCity() {
+    Caman("#canvas", img, function () {
+        this.sinCity().render();
+    });
+}
+
+// crossProcess effect
+function crossProcess() {
+    Caman("#canvas", img, function () {
+        this.crossProcess().render();
+    });
+}
+
+// pinhole effect
+function pinhole() {
+    Caman("#canvas", img, function () {
+        this.pinhole().render();
+    });
+}
+
+// nostalgia effect
+function nostalgia() {
+    Caman("#canvas", img, function () {
+        this.nostalgia().render();
+    });
+}
+
+// herMajesty effect
+function herMajesty() {
+    Caman("#canvas", img, function () {
+        this.herMajesty().render();
+    });
+}
+
+// orangePeel effect
+function orangePeel() {
+    Caman("#canvas", img, function () {
+        this.orangePeel().render();
+    });
+}
+
+// love effect
+function love() {
+    Caman("#canvas", img, function () {
+        this.love().render();
+    });
+}
+
+// grungy effect
+function grungy() {
+    Caman("#canvas", img, function () {
+        this.grungy().render();
+    });
+}
+
+// jarques effect
+function jarques() {
+    Caman("#canvas", img, function () {
+        this.jarques().render();
+    });
+}
+
+// oldBoot effect
+function oldBoot() {
+    Caman("#canvas", img, function () {
+        this.oldBoot().render();
+    });
+}
+
+// glowingSun effect
+function glowingSun() {
+    Caman("#canvas", img, function () {
+        this.glowingSun().render();
+    });
+}
+
+// hazyDays effect
+function hazyDays() {
+    Caman("#canvas", img, function () {
+        this.hazyDays().render();
+    });
+}
+
+// hemingway effect
+function hemingway() {
+    Caman("#canvas", img, function () {
+        this.hemingway().render();
+    });
+}
+
+// concentrate effect
+function concentrate() {
+    Caman("#canvas", img, function () {
+        this.concentrate().render();
+    });
+}
+
+// boxBlur effect
+function boxBlur() {
+    Caman("#canvas", img, function () {
+        this.boxBlur().render();
     });
 }
 

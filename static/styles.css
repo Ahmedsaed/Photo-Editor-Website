@@ -2,27 +2,36 @@ section
 {
     padding: 10px 0;
 }
+
 nav .navbar-brand
 {
     /* size for brand */
     font-size: xx-large;
 }
+
 nav .navbar-brand .blue
 {
     color: #537fbe;
 }
+
 nav .navbar-brand .green
 {
     color: #2e944b;
 }
+
 canvas {
     width: 100%;
     margin: auto;
     background: #ececec;
 }
+
 .btn:focus {
     outline: none;
     box-shadow: none;
-  }
+}
 
+.form-select:focus {
+    outline: none;
+    box-shadow: none;
+}
 
