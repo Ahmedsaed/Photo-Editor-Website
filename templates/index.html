@@ -75,7 +75,7 @@
                         <!-- Tools -->
                         <div class="tab-pane fade show active" id="pills-tools">
                             <div class="justify-content-center align-items-center d-inline rounded">
-                                <form class="row g-3 justify-content-center align-items-center" action="javascript:void(0);">
+                                <form class="row g-3 justify-content-center align-items-center">
                                     <!-- Select a tool-->
                                     <div class="col-auto">
                                         <div class="input-group">
@@ -288,7 +288,7 @@
                                             <!-- sinCity -->
                                             <figure class="figure col-auto my-0 py-0" onclick="sinCity()">
                                                 <img src="\sampleImages\beach.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">
-                                                <figcaption class="figure-caption my-0 py-0">SinCity</figcaption>
+                                                <figcaption class="figure-caption my-0 py-0">Sin City</figcaption>
                                             </figure>
 
                                             <!-- crossProcess -->
@@ -391,9 +391,13 @@
                     <div class="row g-3 my-3 justify-content-center align-items-center">
                         <div class="col-6 m-2 d-block" id="preview_img">
                             <input id="upload-btn" hidden type="file">
-                            <canvas id="canvas" onclick="upload()"></canvas>
+                            <canvas id="canvas" class="img-thumbnail" onclick="upload()"></canvas>
                         </div>
                     </div>
+
+                    <div class="fixed-bottom"></div>
+
+                    <!--<span class="placeholder placeholder-glow"></span>-->
                      
                     <hr/> <!-- Horizontal Line -->
                     

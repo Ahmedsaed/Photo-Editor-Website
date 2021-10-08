@@ -6,7 +6,6 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const image = document.getElementById("preview");
 
-let fileType;
 let img = new Image();
 let fileName = "";
 
@@ -15,13 +14,18 @@ function upload() {
     uploadBtn.click();
 }
 
+// enable buttons
 function enableBtns(state) {
     if (state == true) {
         document.getElementById("zoomBtns").style = "";
         document.getElementById("pills-tabContent").style = "";
+        downloadBtn.disabled = false;
+        revertBtn.disabled = false;
     } else {
         document.getElementById("zoomBtns").style = "pointer-events: none; opacity: 0.4;";
         document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
+        downloadBtn.disabled = true;
+        revertBtn.disabled = true;
     }
 }
 
@@ -33,10 +37,6 @@ uploadBtn.addEventListener("change", () => {
     // clear previous filters/efftects
     revertBtn.click();
 
-    // enable buttons
-    downloadBtn.disabled = false;
-    revertBtn.disabled = false;
-
     // Get File
     const file = uploadBtn.files[0];
     
@@ -47,7 +47,6 @@ uploadBtn.addEventListener("change", () => {
     if (file) {
       // Set file name and type
       fileName = file.name;
-      fileType = file.type;
 
       // Read data as URL
       reader.readAsDataURL(file);
@@ -128,9 +127,10 @@ revertBtn.addEventListener("click", (e) => {
 downloadBtn.addEventListener("click", (e) => {
     const dImage = canvas.toDataURL();
     const link = document.createElement('a');
-
+    
     link.href = dImage;
     link.download = fileName;
+    link.onclick = "return false;"
     link.click();
 })
 
