@@ -112,7 +112,7 @@ document.getElementById("filters").onchange = function () {
   }
 };
 
-// Revert Filters
+// Revert to orignal
 revertBtn.addEventListener("click", (e) => {
     contrast_value.value = 0; 
     vibrance_value.value = 0;
@@ -123,15 +123,17 @@ revertBtn.addEventListener("click", (e) => {
     });
 });
 
-// Download edited Image
-downloadBtn.addEventListener("click", (e) => {
+// Download Image
+downloadBtn.addEventListener("click", () => {
     const dImage = canvas.toDataURL();
     const link = document.createElement('a');
     
+    link.onclick = "return false"
     link.href = dImage;
     link.download = fileName;
-    link.onclick = "return false;"
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 })
 
 // <-----------------------------------------------------Debugging and Handling jobs-------------------------------------------------->
