@@ -91,23 +91,23 @@
                                     </div>
                                     
                                     <!-- Crop -->
-                                    <div class="tool crop col-5">
+                                    <div id="crop_tool" class="tool crop col-5">
                                         <div class="input-group">
                                             <span class="input-group-text">Box:</span>
-                                            <input class="form-control" type="number" id="crop_left" placeholder="Left">
-                                            <input class="form-control" type="number" id="crop_top" placeholder="Top">
-                                            <input class="form-control" type="number" id="crop_right" placeholder="Right">
-                                            <input class="form-control" type="number" id="crop_bottom" placeholder="Bottom">
+                                            <input class="form-control" type="number" min="0" id="crop_left" placeholder="Left">
+                                            <input class="form-control" type="number" min="0" id="crop_top" placeholder="Top">
+                                            <input class="form-control" type="number" min="0" id="crop_right" placeholder="Right">
+                                            <input class="form-control" type="number" min="0" id="crop_bottom" placeholder="Bottom">
                                         </div>
                                     </div>
                                     
                                     <!-- Rotate -->
-                                    <div class="col-2 rotate tool">
-                                        <input class="form-control" type="number" placeholder="Angle">
+                                    <div id="rotate_tool" class="col-2 rotate tool">
+                                        <input class="form-control" type="number" min="-360" max="360" id="rot_angle" placeholder="Angle">
                                     </div>
                                     
                                     <!-- Flip -->
-                                    <div class="col-auto flip tool">
+                                    <div id="flip_tool" class="col-auto flip tool">
                                         <div class="input-group">
                                             <span class="input-group-text">Axis:</span>
                                             <select id="axis" class="form-select bg-light">
@@ -173,7 +173,7 @@
                                     
                                     <!-- Submit Button -->
                                     <div class="col-1">
-                                        <button class="btn btn-outline-primary" type="submit">Apply</button>
+                                        <button class="btn btn-outline-primary" onclick="useTool()" type="submit">Apply</button>
                                     </div>
                                 </form>
                             </div>
@@ -395,10 +395,6 @@
                             <canvas id="canvas" class="img-thumbnail" onclick="upload()"></canvas>
                         </div>
                     </div>
-
-                    <div class="fixed-bottom"></div>
-
-                    <!--<span class="placeholder placeholder-glow"></span>-->
                      
                     <hr/> <!-- Horizontal Line -->
                     

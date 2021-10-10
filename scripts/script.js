@@ -81,9 +81,9 @@ tooltips.forEach((t) => {
 
 // A function that takes a class name and a bool "state" to hide/show tags
 function hidden(state, cls) {
-  var tools = document.getElementsByClassName(cls);
-  for (let i = 0; i < tools.length; i++) {
-    tools[i].hidden = state;
+  var elments = document.getElementsByClassName(cls);
+  for (let i = 0; i < elments.length; i++) {
+    elments[i].hidden = state;
   }
 }
 
@@ -193,8 +193,20 @@ function updateZoomBtns() {
 
 	zoomValue.value = parseInt(zoom/12 * 100) + "%";
 }
+// <------------------------------------------------------------Image manipulation | Tools ------------------------------------------------>
 
-// <------------------------------------------------------------Image manipulation------------------------------------------------>
+function useTool() {
+    let tool = document.getElementsByClassName(document.getElementById("tools").value)[0].id;
+    
+    if (tool == "rotate_tool") {
+        console.log("rotating");
+        rotateImg();
+    }
+}
+
+
+
+// <------------------------------------------------------------Image manipulation | Filters ------------------------------------------------>
 
 const brightnees_value = document.getElementById("brightness_value");
 const contrast_value = document.getElementById("contrast_value");
