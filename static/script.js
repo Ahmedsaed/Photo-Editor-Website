@@ -1,10 +1,12 @@
 // Declaring variables/constants
 const downloadBtn = document.getElementById("download-btn");
+const downloadSideBar = document.getElementById("download_sidebar");
+const download_filetype = document.getElementById("download_filetype");
+const download_filename = document.getElementById("download_filename");
 const uploadBtn = document.getElementById("upload-btn");
 const revertBtn = document.getElementById("revert-btn");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const image = document.getElementById("preview");
 
 let img = new Image();
 let fileName = "";
@@ -19,12 +21,12 @@ function enableBtns(state) {
     if (state == true) {
         document.getElementById("zoomBtns").style = "";
         document.getElementById("pills-tabContent").style = "";
-        downloadBtn.style = "";
+        downloadSideBar.disabled = false;
         revertBtn.disabled = false;
     } else {
         document.getElementById("zoomBtns").style = "pointer-events: none; opacity: 0.4;";
         document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
-        downloadBtn.style = "pointer-events: none; opacity: 0.4;";
+        downloadSideBar.disabled = true;
         revertBtn.disabled = true;
     }
 }
@@ -50,6 +52,8 @@ uploadBtn.addEventListener("change", () => {
     if (file) {
       // Set file name and type
       fileName = file.name;
+      download_filename.value = fileName.substring(0, fileName.length - 4);
+      download_filetype.value = file.type;
 
       // Read data as URL
       reader.readAsDataURL(file);
@@ -127,19 +131,18 @@ revertBtn.addEventListener("click", (e) => {
 });
 
 // Download Image
-/*
 downloadBtn.addEventListener("click", () => {
-    const dImage = canvas.toDataURL();
+    const dImage = canvas.toDataURL(download_filetype.value);
     const link = document.createElement('a');
     
     link.onclick = "return false"
     link.href = dImage;
-    link.download = fileName;
+    link.download = download_filename.value;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 })
-*/
+
 // <-----------------------------------------------------Debugging and Handling jobs-------------------------------------------------->
 
 // Listen to all CamanJS instances
@@ -203,9 +206,19 @@ function useTool() {
     let tool = document.getElementsByClassName(document.getElementById("tools").value)[0].id;
     
     if (tool == "rotate_tool") {
-        console.log("rotating");
-        rotateImg();
+        //rotateImg();
     }
+    else if (tool == "crop_tool") {
+        cropImg
+    }
+}
+
+function cropImg() {
+    let left = document.getElementById("crop_left");
+    let top = document.getElementById("crop_top");
+    let right = document.getElementById("crop_right");
+    let bottom = document.getElementById("crop_bottom");
+    ctx.drawImage(img, left, top, right, bottom);
 }
 
 
