@@ -100,3 +100,5 @@ def register():
 
     return render_template("login.html")
 """
+
+#Set-ExecutionPolicy RemoteSigned

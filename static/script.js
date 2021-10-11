@@ -19,15 +19,18 @@ function enableBtns(state) {
     if (state == true) {
         document.getElementById("zoomBtns").style = "";
         document.getElementById("pills-tabContent").style = "";
-        downloadBtn.disabled = false;
+        downloadBtn.style = "";
         revertBtn.disabled = false;
     } else {
         document.getElementById("zoomBtns").style = "pointer-events: none; opacity: 0.4;";
         document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
-        downloadBtn.disabled = true;
+        downloadBtn.style = "pointer-events: none; opacity: 0.4;";
         revertBtn.disabled = true;
     }
 }
+
+// disable all buttons onload
+enableBtns(false);
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
@@ -124,6 +127,7 @@ revertBtn.addEventListener("click", (e) => {
 });
 
 // Download Image
+/*
 downloadBtn.addEventListener("click", () => {
     const dImage = canvas.toDataURL();
     const link = document.createElement('a');
@@ -135,7 +139,7 @@ downloadBtn.addEventListener("click", () => {
     link.click();
     document.body.removeChild(link);
 })
-
+*/
 // <-----------------------------------------------------Debugging and Handling jobs-------------------------------------------------->
 
 // Listen to all CamanJS instances

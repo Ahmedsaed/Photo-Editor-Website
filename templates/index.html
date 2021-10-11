@@ -430,12 +430,40 @@
                         <div class="col-auto m-2">
                             <span class="tt" data-bs-placement="bottom" title="Download">
                                 <div>
-                                    <button id="download-btn" disabled action="javascript:void(0);" class="btn btn-outline-primary">
+                                    <a href="#download_menu" id="download-btn" disabled class="btn btn-outline-primary" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar">
+                                    </a>
+                                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#download_menu" aria-controls="offcanvasExample">
                                         <i class="bi bi-download"></i>
                                     </button>
                                 </div>
                             </span>
                         </div>
+
+                        
+                        <!-- Download menu (offcanvas) -->
+                          
+                          <div class="offcanvas offcanvas-end" tabindex="-1" id="download_menu" aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-header">
+                              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Download</h5>
+                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <!-- TODO: download form -->
+                              <div>
+                                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                              </div>
+                              <div class="dropdown mt-3">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                  Dropdown button
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <li><a class="dropdown-item" href="#">Action</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </section>
@@ -451,19 +479,7 @@
 
         <!-- side panel / offcanvas -->
         <!-- 
-            <a href="#sidebar" class="d-block mt-3" data-bs-toggle="offcanvas" role="button" aria-controls="sidebar">
-                Explore my other books
-            </a>
-        
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebar-label">
-                <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="sidebar-label">My Other Books</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. In minima ducimus excepturi quasi tempore fugit quis voluptatibus aut error possimus, tenetur natus magni quam voluptatem quae eligendi repudiandae delectus eaque!</p>
-                </div>
-            </div>
+            
         -->
 
         <!-- http://getbootstrap.com/docs/5/ -->
