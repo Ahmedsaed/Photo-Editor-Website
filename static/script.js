@@ -36,9 +36,6 @@ enableBtns(false);
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
-    // enable buttons
-    enableBtns(true);
-
     // clear previous filters/efftects
     revertBtn.click();
 
@@ -64,7 +61,6 @@ uploadBtn.addEventListener("change", () => {
             // Set image src
             img.src = reader.result;
             
-            
             // Add to canvas
             img.onload = function() {
                 canvas.width = img.width;
@@ -73,11 +69,13 @@ uploadBtn.addEventListener("change", () => {
                 canvas.removeAttribute("data-caman-id");
 
                 Caman("#canvas", img, function() {
-                    this.render();
+                    this.render(function() {
+                        // enable buttons
+                        enableBtns(true);
+                    });
                 });
             };
     }, false);
-
 });
 
 // Add a bootstrap toooltip to every tag that has "tt" class
@@ -200,8 +198,22 @@ function updateZoomBtns() {
 
 	zoomValue.value = parseInt(zoom/12 * 100) + "%";
 }
-// <------------------------------------------------------------Image manipulation | Tools ------------------------------------------------>
 
+// <------------------------------------------------------------ Website | toast (notification) --------------------------------------------------->
+
+let warning_toast = document.getElementById("warning_toast");
+
+// display a warning toast
+function dwarning(body) {
+    warning_toast.children[1].innerHTML = body;
+
+    var toast = new bootstrap.Toast(warning_toast)
+    toast.show()
+}
+
+// <------------------------------------------------------------ Image manipulation | Tools ------------------------------------------------>
+
+// Apply changes based on the selected tool
 function useTool() {
     let tool = document.getElementsByClassName(document.getElementById("tools").value)[0].id;
     
@@ -209,16 +221,34 @@ function useTool() {
         //rotateImg();
     }
     else if (tool == "crop_tool") {
-        cropImg
+        cropImg();
     }
 }
 
+// crop the image
 function cropImg() {
-    let left = document.getElementById("crop_left");
-    let top = document.getElementById("crop_top");
-    let right = document.getElementById("crop_right");
-    let bottom = document.getElementById("crop_bottom");
-    ctx.drawImage(img, left, top, right, bottom);
+    // read input
+    let left = document.getElementById("crop_left").value;
+    let top = document.getElementById("crop_top").value;
+    let right = document.getElementById("crop_right").value;
+    let bottom = document.getElementById("crop_bottom").value;
+
+    // validate input
+    if (!left || !top || !right || !bottom) {
+        console.log("Crop Tool: invalid input");
+
+        // show toast (warning notification)
+        dwarning("Crop Tool: Invalid input");
+        return;
+    }
+
+    let image = new Image();
+    image.src = canvas.toDataURL();
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = right;
+    canvas.height = bottom;
+    ctx.drawImage(image, left, top, right, bottom, 0, 0, canvas.width, canvas.height);
 }
 
 
