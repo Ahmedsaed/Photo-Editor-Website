@@ -436,35 +436,41 @@
                                 </div>
                             </span>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Download menu (offcanvas) -->
-                          
-                          <div class="offcanvas offcanvas-end" tabindex="-1" id="download_menu" aria-labelledby="offcanvasExampleLabel">
-                            <div class="offcanvas-header">
-                              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Download</h5>
-                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <!-- Download form -->
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">File Name:</span>
-                                    <input type="text" id="download_filename" class="form-control">
-                                </div>
-                                <hr/>
-                                <div class="input-group m-2">
-                                    <span class="input-group-text">Format:</span>
-                                    <select id="download_filetype" class="form-select bg-light">
-                                        <option selected value="image/jpeg">JPG</option>
-                                        <option value="image/png">PNG</option>
-                                        <option value="image/webp">WebP</option>
-                                    </select>
-                                </div>
-                                <hr/>
-                                <button id="download-btn" class="btn btn-primary m-2">
-                                    Download
-                                </button>
-                            </div>
-                          </div>
+                <!-- Download menu (offcanvas) -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="download_menu" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Download</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body m-2">
+                        <!-- Download form -->
+                        <div class="input-group m-auto">
+                            <span class="input-group-text">File Name:</span>
+                            <input type="text" id="download_filename" class="form-control">
+                        </div>
+                        <hr class="m-2"/>
+                        <div class="input-group m-auto">
+                            <span class="input-group-text">Format:</span>
+                            <select id="download_filetype" class="form-select bg-light">
+                                <option selected value="image/jpeg">JPG</option>
+                                <option value="image/png">PNG</option>
+                                <option value="image/webp">WebP</option>
+                            </select>
+                        </div>
+                        <div class="m-2 p-2 rounded text-white bg-secondary">
+                            <b>&nbsp Hint:</b>
+                            <ul>
+                                <li><p class="my-0">Use "PNG" for transparent background</p></li>
+                                <li><p class="my-0">Use "JPG" for lower file size</p></li>
+                            </ul>
+                        </div>
+                        <hr class="m-2"/>
+                        <button id="download-btn" class="btn btn-primary mx-auto d-flex">
+                            Download
+                        </button>
                     </div>
                 </div>
             </section>

@@ -248,11 +248,12 @@ function useTool() {
     
     if (tool == "rotate_tool") {
         let degree = document.getElementById("rot_angle").value;
-        
+        let absDegree = Math.abs(degree);
+        let angle = ((absDegree <= 90) ? absDegree : (absDegree < 180) ? 90 - absDegree%90 : (absDegree < 270) ? absDegree%90 : (absDegree != 360) ? 90 - absDegree%90 : 0);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.height = img.height * Math.sin((90 - degree) * Math.PI/180) + img.width * Math.sin(degree * Math.PI/180); // TODO: complete the calculation
-        canvas.width = img.width * Math.sin((90 - degree) * Math.PI/180) + img.height * Math.sin(degree * Math.PI/180);
-        console.log();
+        canvas.height = img.height * Math.sin((90 - Math.abs(angle)) * Math.PI/180) + img.width * Math.sin(Math.abs(angle) * Math.PI/180);
+        canvas.width = img.width * Math.sin((90 - Math.abs(angle)) * Math.PI/180) + img.height * Math.sin(Math.abs(angle) * Math.PI/180);
         ImageTools(img, canvas.width/2, canvas.height/2, img.width, img.height, degree, false, false, true);
     }
     else if (tool == "crop_tool") {
