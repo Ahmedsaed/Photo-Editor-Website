@@ -241,13 +241,34 @@ function dwarning(body) {
 
 // Apply changes based on the selected tool
 function useTool() {
+    // disable buttons
+    enableBtns(false);
+
     let tool = document.getElementsByClassName(document.getElementById("tools").value)[0].id;
     
     if (tool == "rotate_tool") {
-        //rotateImg();
+        let degree = document.getElementById("rot_angle").value;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.height = img.height * Math.sin((90 - degree) * Math.PI/180) + img.width * Math.sin(degree * Math.PI/180); // TODO: complete the calculation
+        canvas.width = img.width * Math.sin((90 - degree) * Math.PI/180) + img.height * Math.sin(degree * Math.PI/180);
+        console.log();
+        ImageTools(img, canvas.width/2, canvas.height/2, img.width, img.height, degree, false, false, true);
     }
     else if (tool == "crop_tool") {
         cropImg();
+    }
+    else if (tool == "flip_tool") {
+        let axis = document.getElementById("flip_axis").value;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (axis == "0") { // flip on horizontal axis
+            ImageTools(img, 0, 0, img.width, img.height, 0, false, true);
+        }
+        else { // flip on vertical axis
+            ImageTools(img, 0, 0, img.width, img.height, 0, true);
+        }
     }
 }
 
@@ -279,10 +300,46 @@ function cropImg() {
         Caman("#canvas", img, function() {
             this.render();
         });
+        
+        // enable buttons
+        enableBtns(true);
     }
 }
 
+function ImageTools(img, x, y, width, height, deg, flip, flop, center) {
 
+    ctx.save();
+    
+    if(typeof width === "undefined") width = img.width;
+    if(typeof height === "undefined") height = img.height;
+    if(typeof center === "undefined") center = false;
+    
+    // Set rotation point to center of image, instead of top/left
+    if(center) {
+        x -= width/2;
+        y -= height/2;
+    }
+    
+    // Set the origin to the center of the image
+    ctx.translate(x + width/2, y + height/2);
+    
+    // Rotate the canvas around the origin
+    var rad = 2 * Math.PI - deg * Math.PI / 180;    
+    ctx.rotate(rad);
+    
+    // Flip/flop the canvas
+    if(flip) flipScale = -1; else flipScale = 1;
+    if(flop) flopScale = -1; else flopScale = 1;
+    ctx.scale(flipScale, flopScale);
+    
+    // Draw the image    
+    ctx.drawImage(img, -width/2, -height/2, width, height);
+    
+    ctx.restore();
+    
+    // enable buttons   
+    enableBtns(true);
+}
 
 // <------------------------------------------------------------Image manipulation | Filters ------------------------------------------------>
 
