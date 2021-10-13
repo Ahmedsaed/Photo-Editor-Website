@@ -242,13 +242,15 @@ function cropImg() {
         return;
     }
 
-    let image = new Image();
-    image.src = canvas.toDataURL();
+    img.src = canvas.toDataURL();
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = right;
-    canvas.height = bottom;
-    ctx.drawImage(image, left, top, right, bottom, 0, 0, canvas.width, canvas.height);
+    img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.width = right;
+        canvas.height = bottom;
+        ctx.drawImage(img, left, top, right, bottom, 0, 0, canvas.width, canvas.height);
+    }
+
 }
 
 
