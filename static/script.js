@@ -9,6 +9,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 let img = new Image();
+let orignalImg = "";
 let fileName = "";
 
 // Request image file when the canvas is clicked
@@ -60,6 +61,7 @@ uploadBtn.addEventListener("change", () => {
     reader.addEventListener("load", () => {
             // Set image src
             img.src = reader.result;
+            orignalImg = reader.result;
             
             // Add to canvas
             img.onload = function() {
@@ -119,13 +121,37 @@ document.getElementById("filters").onchange = function () {
 
 // Revert to orignal
 revertBtn.addEventListener("click", (e) => {
+    // reset tools
+    document.getElementById("crop_left").value = null;
+    document.getElementById("crop_right").value = null;
+    document.getElementById("crop_top").value = null;
+    document.getElementById("crop_bottom").value = null;
+    document.getElementById("rot_angle").value = null;
+    document.getElementById("text_string").value = null;
+    document.getElementById("text_font").value = null;
+    document.getElementById("watermark_file").value = null;
+    document.getElementById("watermark_opacity").value = null;
+
+    // reset filters
     contrast_value.value = 0; 
     vibrance_value.value = 0;
     brightnees_value.value = 0;
     saturation_value.value = 0;
-    Caman("#canvas", img, function() {
-      this.revert();
-    });
+
+    // show orignal img
+    img.src = orignalImg;
+
+    img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0)
+        
+        // revert effects
+        Caman("#canvas", img, function() {
+          this.revert();
+        });
+    }
 });
 
 // Download Image
@@ -249,8 +275,11 @@ function cropImg() {
         canvas.width = right;
         canvas.height = bottom;
         ctx.drawImage(img, left, top, right, bottom, 0, 0, canvas.width, canvas.height);
+        
+        Caman("#canvas", img, function() {
+            this.render();
+        });
     }
-
 }
 
 

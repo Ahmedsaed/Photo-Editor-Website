@@ -110,7 +110,7 @@
                                     <div id="flip_tool" class="col-auto flip tool">
                                         <div class="input-group">
                                             <span class="input-group-text">Axis:</span>
-                                            <select id="axis" class="form-select bg-light">
+                                            <select id="flip_axis" class="form-select bg-light">
                                                 <option selected value="0">Horizontal</option>
                                                 <option value="1">Vertical</option>
                                             </select>
@@ -119,10 +119,10 @@
                                     
                                     <!-- text -->
                                     <div class="col-2 text tool">
-                                        <input class="form-control" type="text" placeholder="text">
+                                        <input class="form-control" type="text" id="text_string" placeholder="text">
                                     </div>
                                     <div class="col-1 text tool">
-                                        <input class="form-control" type="text" placeholder="Font">
+                                        <input class="form-control" type="text" id="text_font" placeholder="Font">
                                     </div>
                                     <div class="col-1 text tool" style="width: 10%">
                                         <div class="input-group">
@@ -152,7 +152,7 @@
                                         <input class="form-control" type="file" id="watermark_file">
                                     </div>
                                     <div class="col-2 watermark tool">
-                                        <input class="form-control" type="number" id="opacity" placeholder="Opacity">
+                                        <input class="form-control" type="number" id="watermark_opacity" placeholder="Opacity">
                                     </div>
                                     <div class="col-auto watermark tool">
                                         <div class="input-group">
