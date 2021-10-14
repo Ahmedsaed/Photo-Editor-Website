@@ -248,25 +248,87 @@ function useTool() {
     let tool = document.getElementsByClassName(document.getElementById("tools").value)[0].id;
     
     if (tool == "rotate_tool") {
-        let degree = document.getElementById("rot_angle").value;
-        let absDegree = Math.abs(degree);
-        let angle = ((absDegree <= 90) ? absDegree : (absDegree < 180) ? 90 - absDegree%90 : (absDegree < 270) ? absDegree%90 : (absDegree != 360) ? 90 - absDegree%90 : 0);
-
-        img.src = canvas.toDataURL();
-        
-        img.onload = function() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            canvas.height = img.height * Math.sin((90 - Math.abs(angle)) * Math.PI/180) + img.width * Math.sin(Math.abs(angle) * Math.PI/180);
-            canvas.width = img.width * Math.sin((90 - Math.abs(angle)) * Math.PI/180) + img.height * Math.sin(Math.abs(angle) * Math.PI/180);
-            ImageTools(img, canvas.width/2, canvas.height/2, img.width, img.height, degree, false, false, true);
-        }
+        rotateImg();
     }
     else if (tool == "crop_tool") {
         cropImg();
     }
     else if (tool == "flip_tool") {
-        let axis = document.getElementById("flip_axis").value;
-        
+        flipImg();
+    }
+    else if (tool == "text_tool") {
+        addtext();
+    }
+}
+
+function addtext() {
+    let text_string = document.getElementById("text_string").value;
+    let text_font = document.getElementById("text_font").value;
+    let text_size = parseInt(document.getElementById("text_size").value);
+    let text_color = document.getElementById("text_color").value;
+    let text_postion = document.getElementById("text_postion").value;
+
+    // validate input
+    if (!text_string || !text_font || !text_size || !text_color || !text_postion) {
+        console.log("Text Tool: invalid input");
+
+        // show toast (warning notification)
+        dwarning("Text Tool: Invalid input");
+        enableBtns(true);
+        return;
+    }
+    
+    console.log(text_size + "px " + text_font)
+    ctx.font = text_size + "px " + text_font;
+    ctx.fillStyle = text_color;
+
+    if (text_postion == "top-left") {    
+        ctx.textAlign = "left";
+        ctx.fillText(text_string, 10, text_size + 10);
+    }
+    else if (text_postion == "top-center") {
+        ctx.textAlign = "center";
+        ctx.fillText(text_string, canvas.width/2, text_size + 10);
+    }
+    else if (text_postion == "top-right") {
+        ctx.textAlign = "right";
+        ctx.fillText(text_string, canvas.width - 10, text_size + 10);
+    }
+    else if (text_postion == "middle-left") {
+        ctx.textAlign = "left";
+        ctx.fillText(text_string, 10, text_size + canvas.height/2);
+    }
+    else if (text_postion == "middle-center") {
+        ctx.textAlign = "center";
+        ctx.fillText(text_string, canvas.width/2, text_size + canvas.height/2);
+    }
+    else if (text_postion == "middle-right") {
+        ctx.textAlign = "right";
+        ctx.fillText(text_string, canvas.width - 10, text_size + canvas.height/2);
+    }
+    else if (text_postion == "bottom-left") {
+        ctx.textAlign = "left";
+        ctx.fillText(text_string, 10, canvas.height - 10);
+    }
+    else if (text_postion == "bottom-center") {
+        ctx.textAlign = "center";
+        ctx.fillText(text_string, canvas.width/2, canvas.height - 10);
+    }
+    else if (text_postion == "bottom-right") {
+        ctx.textAlign = "right";
+        ctx.fillText(text_string, canvas.width - 10, canvas.height - 10);
+    }
+
+    enableBtns(true);
+}
+
+// flip image
+function flipImg() {
+    let axis = document.getElementById("flip_axis").value;
+
+    img.src = canvas.toDataURL();
+
+    img.onload = function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (axis == "0") { // flip on horizontal axis
@@ -278,7 +340,34 @@ function useTool() {
     }
 }
 
-// crop the image
+// rotate Image
+function rotateImg() {
+    let degree = document.getElementById("rot_angle").value;
+
+    // validate input
+    if (!degree) {
+        console.log("Rotate Tool: invalid input");
+
+        // show toast (warning notification)
+        dwarning("Rotate Tool: Invalid input");
+        enableBtns(true);
+        return;
+    }
+
+    let absDegree = Math.abs(degree);
+    let angle = ((absDegree <= 90) ? absDegree : (absDegree < 180) ? 90 - absDegree % 90 : (absDegree < 270) ? absDegree % 90 : (absDegree != 360) ? 90 - absDegree % 90 : 0);
+
+    img.src = canvas.toDataURL();
+
+    img.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.height = img.height * Math.sin((90 - Math.abs(angle)) * Math.PI / 180) + img.width * Math.sin(Math.abs(angle) * Math.PI / 180);
+        canvas.width = img.width * Math.sin((90 - Math.abs(angle)) * Math.PI / 180) + img.height * Math.sin(Math.abs(angle) * Math.PI / 180);
+        ImageTools(img, canvas.width / 2, canvas.height / 2, img.width, img.height, degree, false, false, true);
+    };
+}
+
+// crop image
 function cropImg() {
     // read input
     let left = document.getElementById("crop_left").value;
@@ -292,6 +381,7 @@ function cropImg() {
 
         // show toast (warning notification)
         dwarning("Crop Tool: Invalid input");
+        enableBtns(true);
         return;
     }
 
@@ -312,8 +402,8 @@ function cropImg() {
     }
 }
 
+// this function can crop, rotate and flip images
 function ImageTools(img, x, y, width, height, deg, flip, flop, center) {
-
     ctx.save();
     
     if(typeof width === "undefined") width = img.width;
