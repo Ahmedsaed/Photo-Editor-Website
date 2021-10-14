@@ -1,2 +1,6 @@
 flask
 flask_session
+pillow
+opencv-python
+scipy
+numpy

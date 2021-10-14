@@ -130,6 +130,7 @@ revertBtn.addEventListener("click", (e) => {
     document.getElementById("rot_angle").value = null;
     document.getElementById("text_string").value = null;
     document.getElementById("text_font").value = null;
+    document.getElementById("text_size").value = null;
     document.getElementById("watermark_file").value = null;
     document.getElementById("watermark_opacity").value = null;
 
@@ -257,11 +258,85 @@ function useTool() {
         flipImg();
     }
     else if (tool == "text_tool") {
-        addtext();
+        addText();
+    }
+    else if (tool == "watermark_tool") {
+        addWaterMark();
     }
 }
 
-function addtext() {
+// Add watermark to image
+function addWaterMark() {
+    ctx.save();
+
+    let watermark_file = document.getElementById("watermark_file").files[0];
+    let watermark_opacity = document.getElementById("watermark_opacity").value;
+    let watermark_postion = document.getElementById("watermark_postion").value;
+
+    // Init FileReader API
+    const reader = new FileReader();
+    let watermark_img = new Image();
+
+    ctx.globalAlpha = watermark_opacity/100;
+  
+    // validate input
+    if (!watermark_file || !watermark_opacity || !watermark_postion) {
+        console.log("Watermark Tool: invalid input");
+
+        // show toast (warning notification)
+        dwarning("Watermark Tool: Invalid input");
+        enableBtns(true);
+        return;
+    }
+
+    // Read data as URL
+    reader.readAsDataURL(watermark_file);
+    
+    reader.addEventListener("load", () => {
+        watermark_img.src = reader.result;
+
+        let wmImg_width = img.width * 10/100;
+        let wmImg_height = (img.width * 10/100 * watermark_img.height) / watermark_img.width;
+
+        watermark_img.onload = function() {
+            if (watermark_postion == "top-left") {    
+                ctx.drawImage(watermark_img, 0, 0, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "top-center") {
+                ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, 0, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "top-right") {
+                ctx.drawImage(watermark_img, canvas.width - wmImg_width, 0, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "middle-left") {
+                ctx.drawImage(watermark_img, 0, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "middle-center") {
+                ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "middle-right") {
+                ctx.drawImage(watermark_img, canvas.width - wmImg_width, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "bottom-left") {
+                ctx.drawImage(watermark_img, 0, canvas.height - wmImg_height, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "bottom-center") {
+                ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, canvas.height - wmImg_height, wmImg_width , wmImg_height);
+            }
+            else if (watermark_postion == "bottom-right") {
+                ctx.drawImage(watermark_img, canvas.width - wmImg_width, canvas.height - wmImg_height, wmImg_width , wmImg_height);
+            }
+            
+            enableBtns(true);
+            ctx.restore();
+        };
+    }, 
+    false);
+
+}
+
+// Add text to image
+function addText() {
     let text_string = document.getElementById("text_string").value;
     let text_font = document.getElementById("text_font").value;
     let text_size = parseInt(document.getElementById("text_size").value);
@@ -319,6 +394,7 @@ function addtext() {
         ctx.fillText(text_string, canvas.width - 10, canvas.height - 10);
     }
 
+    // enable buttons
     enableBtns(true);
 }
 
