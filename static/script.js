@@ -24,11 +24,13 @@ function enableBtns(state) {
         document.getElementById("pills-tabContent").style = "";
         downloadSideBar.disabled = false;
         revertBtn.disabled = false;
+        showSpinner(false);
     } else {
         document.getElementById("zoomBtns").style = "pointer-events: none; opacity: 0.4;";
         document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
         downloadSideBar.disabled = true;
         revertBtn.disabled = true;
+        showSpinner(true);
     }
 }
 
@@ -168,6 +170,16 @@ downloadBtn.addEventListener("click", () => {
     link.click();
     document.body.removeChild(link);
 })
+
+// Show spinner (loading)
+function showSpinner(state) {
+    if (state) {
+        downloadSideBar.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>';
+    }
+    else {
+        downloadSideBar.innerHTML = '<i class="bi bi-download"></i>';
+    }
+}
 
 // <-----------------------------------------------------Debugging and Handling jobs-------------------------------------------------->
 
