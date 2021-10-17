@@ -18,7 +18,7 @@ function upload() {
 }
 
 // enable buttons
-function enableBtns(state) {
+function enableBtns(state, spinner) {
     if (state == true) {
         document.getElementById("zoomBtns").style = "";
         document.getElementById("pills-tabContent").style = "";
@@ -30,12 +30,13 @@ function enableBtns(state) {
         document.getElementById("pills-tabContent").style = "pointer-events: none; opacity: 0.4;";
         downloadSideBar.disabled = true;
         revertBtn.disabled = true;
+        if (spinner == false) return;
         showSpinner(true);
     }
 }
 
 // disable all buttons onload
-enableBtns(false);
+enableBtns(false, false);
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
@@ -50,13 +51,21 @@ uploadBtn.addEventListener("change", () => {
   
     // Check for file
     if (file) {
-      // Set file name and type
-      fileName = file.name;
-      download_filename.value = fileName.substring(0, fileName.length - 4);
-      download_filetype.value = file.type;
+        if (['image/jpeg', 'image/gif', 'image/webp', 'image/png'].includes(file.type)) {
+            // Set file name and type
+            fileName = file.name;
+            download_filename.value = fileName.substring(0, fileName.length - 4);
+            download_filetype.value = (file.type == 'image/gif') ? 'image/png': file.type;
+        }
+        else {
+            // Show warning modal
+            dwarning("Unsupported file format");
+            return;
+        }
+      
 
-      // Read data as URL
-      reader.readAsDataURL(file);
+        // Read data as URL
+        reader.readAsDataURL(file);
     }
 
     // Add image to canvas

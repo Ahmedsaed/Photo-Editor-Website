@@ -37,7 +37,7 @@
                 <div>
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="btn btn-outline-primary mx-1" href="#editor">Editor</a>
+                        <a class="btn btn-outline-primary mx-1" href="#">Editor</a>
                       </li>
                       <li class="nav-item">
                         <a class="btn btn-outline-primary mx-1" href="#doc">How To Use</a>
@@ -56,8 +56,8 @@
         
         <main>
             <!-- Photo Editor -->
-            <section>
-                <div id="editor" class="display-5 text-muted ms-5 mb-3">Editor</div>
+            <section id="editor">
+                <div class="display-5 text-muted ms-5 mb-3">Editor</div>
                 <div class="container py-3 px-5 border border-3 rounded text-center shadow bg-light">
                     <!-- Nav pills -->
                     <ul class="nav nav-pills mb-3 justify-content-center d-inline-flex rounded border border-2" id="pills-tab" role="tablist">
@@ -479,8 +479,101 @@
             </section>
             
             <!-- How To Use Section -->
-            <section id="doc">
+            <section id="doc" class="bg-light mt-5">
                 <div class="display-5 text-muted ms-5">How To Use</div>
+                <div class="container-xxl py-3">
+                    <div class="row">
+                        <div class="col-2 bg-white shadow me-4 py-2">
+                            <p class="fw-bold border-bottom mb-1 fs-5">Table Of Contents</p>
+                            <ul class="list-unstyled ps-0">
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
+                                        &nbsp; &nbsp; Upload Image
+                                    </button>
+                                </li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
+                                        &nbsp; &nbsp; Controls
+                                    </button>
+                                </li>
+                                <li class="mb-1">
+                                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tools-collapse" aria-expanded="false">
+                                    Tools
+                                  </button>
+                                  <div class="collapse" id="tools-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled small">
+                                      <li><a href="#" class="link-dark rounded">Crop</a></li>
+                                      <li><a href="#" class="link-dark rounded">Rotate</a></li>
+                                      <li><a href="#" class="link-dark rounded">Flip</a></li>
+                                      <li><a href="#" class="link-dark rounded">Text</a></li>
+                                      <li><a href="#" class="link-dark rounded">Watermark</a></li>
+                                    </ul>
+                                  </div>
+                                </li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#filters-collapse" aria-expanded="false">
+                                        Filters
+                                    </button>
+                                    <div class="collapse" id="filters-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="link-dark rounded">Brightness</a></li>
+                                        <li><a href="#" class="link-dark rounded">Contrast</a></li>
+                                        <li><a href="#" class="link-dark rounded">Saturation</a></li>
+                                        <li><a href="#" class="link-dark rounded">Vibrance</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
+                                        &nbsp; &nbsp; Effects
+                                    </button>
+                                </li>
+                                <li class="mb-1">
+                                    <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
+                                        &nbsp; &nbsp; Download
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col bg-white shadow py-2 px-4">
+                            <!-- Upload Image | How to use -->
+                            <div class="fw-bold display-5 mb-2">Upload Image</div>
+                            <p class="fs-5">To upload an image click on the white canvas at the middle of the editor</p>
+                            <div class="callout callout-info">
+                                <p class="fs-6 fw-bold mb-0">Supported Formats:</p>
+                                <ul>
+                                    <li><p class="fs-6">JPG</p></li>
+                                    <li><p class="fs-6">PNG</p></li>
+                                    <li><p class="fs-6">GIF</p></li>
+                                    <li><p class="fs-6">WebP</p></li>
+                                </ul>
+                            </div>
+
+                            <!-- Controls | How to use -->
+                            <div class="fw-bold display-5 mb-2">Controls</div>
+                            <p class="fs-5">At the bottom of the editor section, There are 3 buttons:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Revert</p>
+                                    <p class="fs-6">Click this button to revert the edited image to it's orignal state</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Zoom In/Out</p>
+                                    <p class="fs-6">Use these buttons to Zoom In/Out</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Download</p>
+                                    <p class="fs-6">Click this button to download the edited image</p>
+                                </li>
+                            </ul>
+
+                            <!-- Tools | How to use -->
+                            <div class="fw-bold display-5 mb-2">Tools</div>
+                            <div class="my-1"></div>
+                            <div class="fw-bold display-6 mb-2">Crop</div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 
@@ -501,14 +594,6 @@
                 </div>
               </div>
         </section>
-
-        <!-- <span class="tt" data-bs-placement="bottom" title="Enter an email address we can reply to."></span> -->
-
-
-        <!-- side panel / offcanvas -->
-        <!-- 
-            
-        -->
 
         <!-- http://getbootstrap.com/docs/5/ -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
