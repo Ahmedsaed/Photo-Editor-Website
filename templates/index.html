@@ -93,7 +93,7 @@
                                     <!-- Crop -->
                                     <div id="crop_tool" class="tool crop col-5">
                                         <div class="input-group">
-                                            <span class="input-group-text">Box:</span>
+                                            <span class="input-group-text">Rectangle:</span>
                                             <input class="form-control" type="number" min="0" id="crop_left" placeholder="Left">
                                             <input class="form-control" type="number" min="0" id="crop_top" placeholder="Top">
                                             <input class="form-control" type="number" min="0" id="crop_right" placeholder="Right">
@@ -563,7 +563,7 @@
                                 </li>
                                 <li>
                                     <p class="fs-5 mb-0">Download</p>
-                                    <p class="fs-6">Click this button to download the edited image</p>
+                                    <p class="fs-6">Click this button to open the download menu</p>
                                 </li>
                             </ul>
 
@@ -571,6 +571,36 @@
                             <div class="fw-bold display-5 mb-2">Tools</div>
                             <div class="my-1"></div>
                             <div class="fw-bold display-6 mb-2">Crop</div>
+                            <p class="fs-5">Use this tool to crop the image</p>
+                            <p class="fs-5 mb-0">Tool requirments:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Rectangle</p>
+                                    <p class="fs-6">Specify a rectangle coordinates to crop the image</p>
+                                    <ul>
+                                        <li>
+                                            <p class="fs-6 mb-0">Left: The left Column </p>
+                                        </li>
+                                        <li>
+                                            <p class="fs-6 mb-0">Top: The top Row </p>
+                                        </li>
+                                        <li>
+                                            <p class="fs-6 mb-0">Right: The right column</p>
+                                        </li>
+                                        <li>
+                                            <p class="fs-6 mb-0">Bottom: The bottom Row</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="callout callout-info">
+                                <ul>
+                                    <li>Left and Right values can't be greater than the image width</li>
+                                    <li>Right value must be greater than the Left value</li>
+                                    <li>Top and Buttom values can't be greater than the image height</li>
+                                    <li>Bottom value must be greater than the Top value</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
