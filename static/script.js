@@ -260,6 +260,19 @@ function dwarning(body) {
     toast.show()
 }
 
+// <------------------------------------------------------------ Website | Table of contents --------------------------------------------------->
+
+// Auto increase margin-top for "table of contents" to make it accessible by the user
+window.onscroll = function() {
+    let scrollValue = window.scrollY - 800;
+
+    if (scrollValue > 0) 
+    {
+        document.getElementById("tableOfContents").style = "margin-top: " + scrollValue + "px ;";
+    }
+}
+
+
 // <------------------------------------------------------------ Image manipulation | Tools ------------------------------------------------>
 
 // Apply changes based on the selected tool

@@ -484,7 +484,7 @@
                 <div class="container-xxl py-3">
                     <div class="row">
                         <div class="col-2 bg-white shadow me-4 py-2">
-                            <p class="fw-bold border-bottom mb-1 fs-5">Table Of Contents</p>
+                            <p class="fw-bold border-bottom mb-1 fs-5" id="tableOfContents">Table Of Contents</p>
                             <ul class="list-unstyled ps-0">
                                 <li class="mb-1">
                                     <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
@@ -570,6 +570,8 @@
                             <!-- Tools | How to use -->
                             <div class="fw-bold display-5 mb-2">Tools</div>
                             <div class="my-1"></div>
+
+                            <!-- Crop | Tools | How to use-->
                             <div class="fw-bold display-6 mb-2">Crop</div>
                             <p class="fs-5">Use this tool to crop the image</p>
                             <p class="fs-5 mb-0">Tool requirments:</p>
@@ -599,6 +601,23 @@
                                     <li>Right value must be greater than the Left value</li>
                                     <li>Top and Buttom values can't be greater than the image height</li>
                                     <li>Bottom value must be greater than the Top value</li>
+                                </ul>
+                            </div>
+
+                            <!-- Rotate | Tools | How to use -->
+                            <div class="fw-bold display-6 mb-2">Rotate</div>
+                            <p class="fs-5">Use this tool to rotate the image</p>
+                            <p class="fs-5 mb-0">Tool requirments:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Angle</p>
+                                    <p class="fs-6">Specify an angle to rotate the image</p>
+                                </li>
+                            </ul>
+                            <div class="callout callout-info">
+                                <ul>
+                                    <li>To rotate the image clockwise, use a negative value</li>
+                                    <li>To rotate the image anticlockwise, use a positive value</li>
                                 </ul>
                             </div>
                         </div>
