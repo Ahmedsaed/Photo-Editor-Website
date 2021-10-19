@@ -54,7 +54,7 @@ uploadBtn.addEventListener("change", () => {
         if (['image/jpeg', 'image/gif', 'image/webp', 'image/png'].includes(file.type)) {
             // Set file name and type
             fileName = file.name;
-            download_filename.value = fileName.substring(0, fileName.length - 4);
+            download_filename.value = (file.type == 'image/webp') ? fileName.substring(0, fileName.length - 5): fileName.substring(0, fileName.length - 4);
             download_filetype.value = (file.type == 'image/gif') ? 'image/png': file.type;
         }
         else {
@@ -262,16 +262,19 @@ function dwarning(body) {
 
 // <------------------------------------------------------------ Website | Table of contents --------------------------------------------------->
 
+tableOfContents = document.getElementById("tableOfContents");
+
 // Auto increase margin-top for "table of contents" to make it accessible by the user
 window.onscroll = function() {
-    let scrollValue = window.scrollY - 800;
+    let scrollValue = window.scrollY - document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + tableOfContents.clientHeight/2 - 50;
+    console.log(window.scrollY, document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + tableOfContents.clientHeight)
 
     if (scrollValue > 0) 
     {
-        document.getElementById("tableOfContents").style = "margin-top: " + scrollValue + "px ;";
+        tableOfContents.style = "margin-top: " + scrollValue + "px ;";
     }
     else {
-        document.getElementById("tableOfContents").style = "margin-top: " + 0 + "px ;";
+        tableOfContents.style = "margin-top: " + 0 + "px ;";
     }
 }
 
@@ -326,8 +329,15 @@ function addWaterMark() {
         return;
     }
 
-    // Read data as URL
-    reader.readAsDataURL(watermark_file);
+    if (['image/jpeg', 'image/gif', 'image/webp', 'image/png'].includes(watermark_file.type)) {
+        // Read data as URL
+        reader.readAsDataURL(watermark_file);
+    }
+    else {
+        // Show warning modal
+        dwarning("Unsupported file format");
+        return;
+    }
     
     reader.addEventListener("load", () => {
         watermark_img.src = reader.result;
