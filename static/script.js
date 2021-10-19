@@ -266,8 +266,7 @@ tableOfContents = document.getElementById("tableOfContents");
 
 // Auto increase margin-top for "table of contents" to make it accessible by the user
 window.onscroll = function() {
-    let scrollValue = window.scrollY - document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + tableOfContents.clientHeight/2 - 50;
-    console.log(window.scrollY, document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + tableOfContents.clientHeight)
+    let scrollValue = window.scrollY - document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + 10;
 
     if (scrollValue > 0) 
     {
