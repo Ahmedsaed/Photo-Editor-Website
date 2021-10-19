@@ -42,5 +42,5 @@ A website to edit photos
 - Hemingway
 - Concentrate
 
-###### Need Help?
+##### Need Help?
 Visit the "How To Use" section in the website for more info.
