@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="col-auto text tool">
                                         <div class="input-group">
-                                            <span class="input-group-text">Postion:</span>
+                                            <span class="input-group-text">Position:</span>
                                             <select id="text_postion" class="form-select bg-light">
                                                 <option selected value="top-left">Top-Left</option>
                                                 <option value="top-center">Top-Center</option>
@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="col-auto watermark tool">
                                         <div class="input-group">
-                                            <span class="input-group-text">Postion:</span>
+                                            <span class="input-group-text">Position:</span>
                                             <select id="watermark_postion" class="form-select bg-light">
                                                 <option selected value="top-left">Top-Left</option>
                                                 <option value="top-center">Top-Center</option>
@@ -483,8 +483,8 @@
                 <div class="display-5 text-muted ms-5">How To Use</div>
                 <div class="container-xxl py-3">
                     <div class="row">
-                        <div class="col-2 bg-white shadow me-4 py-2">
-                            <p class="fw-bold border-bottom mb-1 fs-5" id="tableOfContents">Table Of Contents</p>
+                        <div class="col-2 mb-auto bg-white shadow me-4 py-2" id="tableOfContents">
+                            <p class="fw-bold border-bottom mb-1 fs-5">Table Of Contents</p>
                             <ul class="list-unstyled ps-0">
                                 <li class="mb-1">
                                     <button class="btn btn-toggle-no align-items-center rounded" aria-expanded="false">
@@ -549,6 +549,8 @@
                                 </ul>
                             </div>
 
+                            <hr class="mx-5">
+
                             <!-- Controls | How to use -->
                             <div class="fw-bold display-5 mb-2">Controls</div>
                             <p class="fs-5">At the bottom of the editor section, There are 3 buttons:</p>
@@ -566,6 +568,8 @@
                                     <p class="fs-6">Click this button to open the download menu</p>
                                 </li>
                             </ul>
+
+                            <hr class="mx-5">
 
                             <!-- Tools | How to use -->
                             <div class="fw-bold display-5 mb-2">Tools</div>
@@ -620,6 +624,81 @@
                                     <li>To rotate the image anticlockwise, use a positive value</li>
                                 </ul>
                             </div>
+
+                            <!-- Flip | Tools | How to Use -->
+                            <div class="fw-bold display-6 mb-2">Flip</div>
+                            <p class="fs-5">Use this tool to flip the image</p>
+                            <p class="fs-5 mb-0">Tool requirments:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Axis</p>
+                                    <p class="fs-6">Specify an axis to flip the image on</p>
+                                </li>
+                            </ul>
+
+                            <!-- Text | Tools | How to use -->
+                            <div class="fw-bold display-6 mb-2">Text</div>
+                            <p class="fs-5">Use this tool to add text to the image</p>
+                            <p class="fs-5 mb-0">Tool requirments:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Text</p>
+                                    <p class="fs-6">A string for the text you want to add</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Font</p>
+                                    <p class="fs-6">Specify a font for the text</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Size</p>
+                                    <p class="fs-6">Specify a size for the text</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Color</p>
+                                    <p class="fs-6">Choose a color for the text</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Position</p>
+                                    <p class="fs-6">choose a position for the text</p>
+                                </li>
+                            </ul>
+                            <div class="callout callout-info">
+                                <p class="fs-6 fw-bold mb-0">Supported Fonts:</p>
+                                <ul>
+                                    <li>arial</li>
+                                    <li>comic sans ms</li>
+                                    <li>serif</li>
+                                    <li>cursive</li>
+                                    <li>monospace</li>
+                                    <li>For more Fonts, visit <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family" target="_blank">CSS Font-Family</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Watermark | Tools | How to use -->
+                            <div class="fw-bold display-6 mb-2">Watermark</div>
+                            <p class="fs-5">Use this tool to add a watermark to the image</p>
+                            <p class="fs-5 mb-0">Tool requirments:</p>
+                            <ul>
+                                <li>
+                                    <p class="fs-5 mb-0">Watermark File</p>
+                                    <p class="fs-6">An image file of the watermark</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Opacity</p>
+                                    <p class="fs-6">Specify a value for the opacity of the watermark</p>
+                                </li>
+                                <li>
+                                    <p class="fs-5 mb-0">Position</p>
+                                    <p class="fs-6">choose a position for the watermark</p>
+                                </li>
+                            </ul>
+
+                            <hr class="mx-5">
+
+                            <!-- Filters | How to use -->
+                            <div class="fw-bold display-5 mb-2">Filters</div>
+                            <div class="my-1"></div>
+
                         </div>
                     </div>
                 </div>

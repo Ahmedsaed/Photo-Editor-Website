@@ -270,6 +270,9 @@ window.onscroll = function() {
     {
         document.getElementById("tableOfContents").style = "margin-top: " + scrollValue + "px ;";
     }
+    else {
+        document.getElementById("tableOfContents").style = "margin-top: " + 0 + "px ;";
+    }
 }
 
 
