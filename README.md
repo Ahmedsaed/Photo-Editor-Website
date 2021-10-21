@@ -1,7 +1,7 @@
 # Photo-Editor-Webapp
 Final project for CS50x | Photo Editor Website
 
-#### Video Demo:
+#### Video Demo: <https://youtu.be/FBE-MdQ-sbE>
 
 #### Website link: <https://ahmedsaed.github.io/templates/index.html>
 
