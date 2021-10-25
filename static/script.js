@@ -297,8 +297,6 @@ function useTool() {
     else if (tool == "watermark_tool") {
         addWaterMark();
     }
-
-    //updateCanvas();
 }
 
 // Add watermark to image
