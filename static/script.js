@@ -159,11 +159,6 @@ revertBtn.addEventListener("click", (e) => {
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0)
-        
-        // revert effects
-        Caman("#canvas", img, function() {
-          this.revert();
-        });
     }
 });
 
@@ -302,6 +297,8 @@ function useTool() {
     else if (tool == "watermark_tool") {
         addWaterMark();
     }
+
+    updateCanvas();
 }
 
 // Add watermark to image
@@ -557,6 +554,25 @@ function ImageTools(img, x, y, width, height, deg, flip, flop, center) {
     
     // enable buttons   
     enableBtns(true);
+}
+
+function updateCanvas()
+{
+    enableBtns(false);
+
+    let image = new Image();
+
+    image.src = canvas.toDataURL();
+    
+    // Add to canvas
+    image.onload = function() {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+        canvas.removeAttribute("data-caman-id");
+
+        enableBtns(true);
+    };
 }
 
 // <------------------------------------------------------------Image manipulation | Filters ------------------------------------------------>
