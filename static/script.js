@@ -298,7 +298,7 @@ function useTool() {
         addWaterMark();
     }
 
-    updateCanvas();
+    //updateCanvas();
 }
 
 // Add watermark to image
@@ -370,8 +370,8 @@ function addWaterMark() {
                 ctx.drawImage(watermark_img, canvas.width - wmImg_width, canvas.height - wmImg_height, wmImg_width , wmImg_height);
             }
             
-            enableBtns(true);
             ctx.restore();
+            updateCanvas();
         };
     }, 
     false);
@@ -437,8 +437,7 @@ function addText() {
         ctx.fillText(text_string, canvas.width - 10, canvas.height - 10);
     }
 
-    // enable buttons
-    enableBtns(true);
+    updateCanvas();
 }
 
 // flip image
@@ -512,12 +511,7 @@ function cropImg() {
         canvas.height = bottom;
         ctx.drawImage(img, left, top, right, bottom, 0, 0, canvas.width, canvas.height);
         
-        Caman("#canvas", img, function() {
-            this.render();
-        });
-        
-        // enable buttons
-        enableBtns(true);
+        updateCanvas();
     }
 }
 
@@ -556,6 +550,7 @@ function ImageTools(img, x, y, width, height, deg, flip, flop, center) {
     enableBtns(true);
 }
 
+// update canvas after using tools
 function updateCanvas()
 {
     enableBtns(false);
