@@ -18,7 +18,7 @@ Finally, The 20 image thumbnails for the website desgin.
 
 #### How to use:
 
-1- Upload Image
+1- Upload Image:
 To upload an image click on the white canvas at the middle of the editor
 
 Supported Formats:
