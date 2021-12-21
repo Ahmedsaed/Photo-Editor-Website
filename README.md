@@ -3,7 +3,7 @@ Final project for CS50x | Photo Editor Website
 
 ### Video Demo: <https://youtu.be/FBE-MdQ-sbE>
 
-### Website link: <https://ahmedsaed.github.io/templates/index.html>
+#### Website link: <https://ahmedsaed.github.io/Photo-Editor-Website>
 
 ### Description:
 A photo editing website.
