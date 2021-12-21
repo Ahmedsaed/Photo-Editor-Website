@@ -24,23 +24,23 @@ To upload an image click on the white canvas at the middle of the editor
 
 Supported Formats:
 
-    - JPG
-    - PNG
-    - GIF
-    - WebP
+- JPG
+- PNG
+- GIF
+- WebP
 
 #### 2- Controls
 
 At the bottom of the editor section, There are 3 buttons:
 
-    - Revert
-        Click this button to revert the edited image to it's original state
+- Revert
+    Click this button to revert the edited image to it's original state
 
-    - Zoom In/Out
-        Use these buttons to Zoom In/Out
+- Zoom In/Out
+    Use these buttons to Zoom In/Out
 
-    - Download
-        Click this button to open the download menu
+- Download
+    Click this button to open the download menu
 
 #### 3- Tools
 
