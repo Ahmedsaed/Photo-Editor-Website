@@ -1,49 +1,55 @@
 # Photo-Editor-Webapp
 Final project for CS50x | Photo Editor Website
 
-#### Video Demo: <https://youtu.be/FBE-MdQ-sbE>
+### Video Demo: <https://youtu.be/FBE-MdQ-sbE>
 
-#### Website link: <https://ahmedsaed.github.io/templates/index.html>
+### Website link: <https://ahmedsaed.github.io/templates/index.html>
 
-#### Description:
+### Description:
 A photo editing website.
 
 This project consists of 1 html file, css file, javascript file, 20 image thumbnails and some sample images for testing purpose.
 
 The javascript file handles  all of the image manipulation and contains all of the website logic.
 
-The CSS file has some custom designs and some bootstrap overridings.
+The CSS file has some custom designs and some bootstrap overriding.
 
-Finally, The 20 image thumbnails for the website desgin.
+Finally, The 20 image thumbnails for the website design.
 
-#### How to use:
+### How to use:
 
-1- Upload Image
+#### 1- Upload Image
+
 To upload an image click on the white canvas at the middle of the editor
 
 Supported Formats:
-- JPG
-- PNG
-- GIF
-- WebP
 
-2- Controls
-    At the bottom of the editor section, There are 3 buttons:
+    - JPG
+    - PNG
+    - GIF
+    - WebP
 
-- Revert
-    Click this button to revert the edited image to it's orignal state
+#### 2- Controls
 
-- Zoom In/Out
-    Use these buttons to Zoom In/Out
+At the bottom of the editor section, There are 3 buttons:
 
-- Download
-    Click this button to open the download menu
+    - Revert
+        Click this button to revert the edited image to it's original state
 
-3- Tools
+    - Zoom In/Out
+        Use these buttons to Zoom In/Out
+
+    - Download
+        Click this button to open the download menu
+
+#### 3- Tools
+
 3.1- Crop
+
 Use this tool to crop the image
 
-Tool requirments:
+Tool requirements:
+
 - Rectangle
     - Specify a rectangle coordinates to crop the image
     - Left: The left Column
@@ -52,15 +58,17 @@ Tool requirments:
     - Bottom: The bottom Row
 
 NOTE:
+
 - Left and Right values can't be greater than the image width
 - Right value must be greater than the Left value
-- Top and Buttom values can't be greater than the image height
+- Top and Bottom values can't be greater than the image height
 - Bottom value must be greater than the Top value
 
 3.2- Rotate
+
 Use this tool to rotate the image
 
-Tool requirments:
+Tool requirements:
 - Angle
     - Specify an angle to rotate the image
 
@@ -69,16 +77,18 @@ Note:
 - To rotate the image anticlockwise, use a positive value
 
 3.3- Flip
+
 Use this tool to flip the image
 
-Tool requirments:
+Tool requirements:
 - Axis
     - Specify an axis to flip the image on
 
 3.4- Text
+
 Use this tool to add text to the image
 
-Tool requirments:
+Tool requirements:
 - Text
     - A string for the text you want to add
 - Font
@@ -99,9 +109,10 @@ Supported Fonts:
 - For more Fonts, visit CSS Font-Family
 
 3.5- Watermark
+
 Use this tool to add a watermark to the image
 
-Tool requirments:
+Tool requirements:
 - Watermark File
     - An image file of the watermark
 
@@ -120,14 +131,16 @@ There are 4 filters. Which are
 - Saturation
 - Vibrance
 
-Each filter has 2 buttons, A button "+" to increase it's value and another button "-" to decrease it
+Each filter has 2 buttons, A button `+` to increase it's value and another button `-` to decrease it
 
 5- Effects
+
 Effects are just a combination of multiple filters with specific values
 
-Click on any effect to apply it
+Click on an effect to apply it
 
 6- Download
+
 To open the download menu click on the download button on the bottom right corner of the editor
 
 After opening the menu, Specify a "File Name" And a "File Format"
@@ -138,21 +151,21 @@ NOTE:
 
 Then click on the download button
 
-#### Features:
-##### Tools:
+### Features:
+#### Tools:
 - Crop
 - Rotate
 - Flip
 - Text
 - Watermark
 
-##### Filters:
+#### Filters:
 - Brightness
 - Contrast
 - Saturation
 - Vibrance
 
-##### Effects:
+#### Effects:
 - Blur
 - Sepia
 - Vintage
@@ -174,7 +187,7 @@ Then click on the download button
 - Hemingway
 - Concentrate
 
-##### This website supports stacking changes. So you can apply multiple effects and filters to the same image.
+#### This website supports stacking changes. So you can apply multiple effects and filters to the same image.
 
 ### Need Help?
-Visit the "How To Use" section in the website for more info.
+Visit the ["How To Use"](https://ahmedsaed.github.io/Photo-Editor-Website/#doc) section in the website for more info.
