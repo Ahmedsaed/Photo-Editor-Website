@@ -261,14 +261,17 @@ tableOfContents = document.getElementById("tableOfContents");
 
 // Auto increase margin-top for "table of contents" to make it accessible by the user
 window.onscroll = function() {
-    let scrollValue = window.scrollY - document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + 10;
-
-    if (scrollValue > 0) 
+    if (document.width > 768)
     {
-        tableOfContents.style = "margin-top: " + scrollValue + "px ;";
-    }
-    else {
-        tableOfContents.style = "margin-top: " + 0 + "px ;";
+        let scrollValue = window.scrollY - document.getElementById("theight").getBoundingClientRect().top + document.body.getBoundingClientRect().top + 10;
+    
+        if (scrollValue > 0) 
+        {
+            tableOfContents.style = "margin-top: " + scrollValue + "px ;";
+        }
+        else {
+            tableOfContents.style = "margin-top: " + 0 + "px ;";
+        }
     }
 }
 
