@@ -805,7 +805,157 @@ function carouselBtnDist() {
         distY = y.offsetTop - x.offsetTop;
         let distance = Math.sqrt(distX*distX + distY*distY);
     
-        console.log(distance);                  
+        setCarouselElements(distance);                  
       }, 500);
 }
+
+const carouselElements = [
+    '<!-- stackBlur --> \
+    <figure class="figure col-auto my-0 py-0" onclick="stackBlur()"> \
+    <img src="static\\assets\\effects_thumbnails\\blur.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0"> \
+    <figcaption class="figure-caption my-0 py-0">Blur</figcaption> \
+    </figure>',
+
+
+    '<!-- Sepia --> \
+    <figure class="figure col-auto my-0 py-0" onclick="sepia()"> \
+    <img src="static\\assets\\effects_thumbnails\\sepia.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0"> \
+    <figcaption class="figure-caption my-0 py-0">Sepia</figcaption> \
+    </figure>',
+
+    '<!-- vintage --> \
+    <figure class="figure col-auto my-0 py-0" onclick="vintage()"> \
+        <img src="static\\assets\\effects_thumbnails\\vintage.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0"> \
+        <figcaption class="figure-caption my-0 py-0">Vintage</figcaption> \
+    </figure>',
+
+    '<!-- Lomo --> \
+    <figure class="figure col-auto my-0 py-0" onclick="lomo()"> \
+        <img src="static\\assets\\effects_thumbnails\\lomo.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0"> \
+        <figcaption class="figure-caption my-0 py-0">Lomo</figcaption> \
+    </figure>',
+
+    '<!-- greyscale --> \
+    <figure class="figure col-auto my-0 py-0" onclick="greyscale()"> \
+        <img src="static\\assets\\effects_thumbnails\\grayscale.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0"> \
+        <figcaption class="figure-caption my-0 py-0">Greyscale</figcaption> \
+    </figure>',
+
+    '<!-- clarity -->\
+    <figure class="figure col-auto my-0 py-0" onclick="clarity()">\
+        <img src="static\\assets\\effects_thumbnails\\clarity.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Clarity</figcaption>\
+    </figure>',
+
+    '<!-- sinCity -->\
+    <figure class="figure col-auto my-0 py-0" onclick="sinCity()">\
+        <img src="static\\assets\\effects_thumbnails\\sin city.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Sin City</figcaption>\
+    </figure>',
+
+    '<!-- crossProcess -->\
+    <figure class="figure col-auto my-0 py-0" onclick="crossProcess()">\
+        <img src="static\\assets\\effects_thumbnails\\cross process.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Cross Process</figcaption>\
+    </figure>',
+
+    '<!-- pinhole -->\
+    <figure class="figure col-auto my-0 py-0" onclick="pinhole()">\
+        <img src="static\\assets\\effects_thumbnails\\pinhole.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Pinhole</figcaption>\
+    </figure>',
+
+    '<!-- nostalgia -->\
+    <figure class="figure col-auto my-0 py-0" onclick="nostalgia()">\
+        <img src="static\\assets\\effects_thumbnails\\nostalgia.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Nostalgia</figcaption>\
+    </figure>',
+
+    '<!-- herMajesty -->\
+    <figure class="figure col-auto my-0 py-0" onclick="herMajesty()">\
+        <img src="static\\assets\\effects_thumbnails\\her majesty.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Her Majesty</figcaption>\
+    </figure>',
+
+    '<!-- grungy -->\
+    <figure class="figure col-auto my-0 py-0" onclick="grungy()">\
+        <img src="static\\assets\\effects_thumbnails\\grungy.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Grungy</figcaption>\
+    </figure>',
+
+    '<!-- orangePeel -->\
+    <figure class="figure col-auto my-0 py-0" onclick="orangePeel()">\
+        <img src="static\\assets\\effects_thumbnails\\orange peel.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Orange Peel</figcaption>\
+    </figure>',
+
+    '<!-- love -->\
+    <figure class="figure col-auto my-0 py-0" onclick="love()">\
+        <img src="static\\assets\\effects_thumbnails\\love.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Love</figcaption>\
+    </figure>',
+
+    '<!-- jarques -->\
+    <figure class="figure col-auto my-0 py-0" onclick="jarques()">\
+        <img src="static\\assets\\effects_thumbnails\\jarques.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Jarques</figcaption>\
+    </figure>',
+
+    '<!-- oldBoot -->\
+    <figure class="figure col-auto my-0 py-0" onclick="oldBoot()">\
+        <img src="static\\assets\\effects_thumbnails\\old boot.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Old Boot</figcaption>\
+    </figure>',
+
+    '<!-- glowingSun -->\
+    <figure class="figure col-auto my-0 py-0" onclick="glowingSun()">\
+        <img src="static\\assets\\effects_thumbnails\\glowing sun.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Glowing Sun</figcaption>\
+    </figure>',
+
+    '<!-- hazyDays -->\
+    <figure class="figure col-auto my-0 py-0" onclick="hazyDays()">\
+        <img src="static\\assets\\effects_thumbnails\\hazy days.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Hazy Days</figcaption>\
+    </figure>',
+
+    '<!-- hemingway -->\
+    <figure class="figure col-auto my-0 py-0" onclick="hemingway()">\
+        <img src="static\\assets\\effects_thumbnails\\heming way.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Hemingway</figcaption>\
+    </figure>',
+
+    '<!-- concentrate -->\
+    <figure class="figure col-auto my-0 py-0" onclick="concentrate()">\
+        <img src="static\\assets\\effects_thumbnails\\concentrate.jpg" width="50" class="figure-img img-fluid rounded my-0 py-0">\
+        <figcaption class="figure-caption my-0 py-0">Concentrate</figcaption>\
+    </figure>'
+]
+
+let carouselItem = '<div class="carousel-item">'
+let carouselRow = '<div class="row justify-content-center my-0 py-0">'
+let carouselBody = document.getElementById("carousel-body");
+
+function setCarouselElements(distance) {
+    distance -= 100;
+
+    carouselBody.innerHTML = " ";
+
+    for (let i = 0, n = parseInt(distance/100), k = 0; i < parseInt(carouselElements.length/n + 0.5); i++) {
+        carouselBody.innerHTML += carouselItem;
+        carouselBody.children[i].className += (i == 0) ? " active" : "";
+        carouselBody.children[i].innerHTML += carouselRow;
+        
+        for (; k < (n + n * i) && k < carouselElements.length; k++) {
+            carouselBody.children[i].children[0].innerHTML += carouselElements[k];
+        }
+
+        console.log(n, carouselElements.length)
+    }
+}
+
+window.addEventListener("resize", () => {
+    carouselBtnDist();
+});
+
     // <---------------------------------------------------------------------------------------------------------------------------------->
