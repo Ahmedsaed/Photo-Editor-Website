@@ -9,7 +9,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 let img = new Image();
-let orignalImg = "";
+let originalImg = "";
 let fileName = "";
 
 // Request image file when the canvas is clicked
@@ -40,7 +40,7 @@ enableBtns(false, false);
 
 // Upload File
 uploadBtn.addEventListener("change", () => {
-    // clear previous filters/efftects
+    // clear previous filters/effects
     revertBtn.click();
 
     // Get File
@@ -72,7 +72,7 @@ uploadBtn.addEventListener("change", () => {
     reader.addEventListener("load", () => {
             // Set image src
             img.src = reader.result;
-            orignalImg = reader.result;
+            originalImg = reader.result;
             
             // Add to canvas
             img.onload = function() {
@@ -92,7 +92,7 @@ uploadBtn.addEventListener("change", () => {
     }, false);
 });
 
-// Add a bootstrap toooltip to every tag that has "tt" class
+// Add a bootstrap tooltip to every tag that has "tt" class
 const tooltips = document.querySelectorAll(".tt");
 tooltips.forEach((t) => {
   new bootstrap.Tooltip(t);
@@ -100,9 +100,9 @@ tooltips.forEach((t) => {
 
 // A function that takes a class name and a bool "state" to hide/show tags
 function hidden(state, cls) {
-  var elments = document.getElementsByClassName(cls);
-  for (let i = 0; i < elments.length; i++) {
-    elments[i].hidden = state;
+  var elements = document.getElementsByClassName(cls);
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].hidden = state;
   }
 }
 
@@ -111,7 +111,7 @@ hidden(true, "filter");
 hidden(false, "crop");
 hidden(false, "brightness");
 
-// Show tool requirments
+// Show tool requirements
 document.getElementById("tools").onchange = function () {
   hidden(true, "tool");
 
@@ -121,7 +121,7 @@ document.getElementById("tools").onchange = function () {
   }
 };
 
-// Show filter requirments
+// Show filter requirements
 document.getElementById("filters").onchange = function () {
   hidden(true, "filter");
 
@@ -131,7 +131,7 @@ document.getElementById("filters").onchange = function () {
   }
 };
 
-// Revert to orignal
+// Revert to original
 revertBtn.addEventListener("click", (e) => {
     // reset tools
     document.getElementById("crop_left").value = null;
@@ -148,11 +148,11 @@ revertBtn.addEventListener("click", (e) => {
     // reset filters
     contrast_value.value = 0; 
     vibrance_value.value = 0;
-    brightnees_value.value = 0;
+    brightness_value.value = 0;
     saturation_value.value = 0;
 
-    // show orignal img
-    img.src = orignalImg;
+    // show original img
+    img.src = originalImg;
 
     img.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -308,7 +308,7 @@ function addWaterMark() {
 
     let watermark_file = document.getElementById("watermark_file").files[0];
     let watermark_opacity = document.getElementById("watermark_opacity").value;
-    let watermark_postion = document.getElementById("watermark_postion").value;
+    let watermark_position = document.getElementById("watermark_position").value;
 
     // Init FileReader API
     const reader = new FileReader();
@@ -317,7 +317,7 @@ function addWaterMark() {
     ctx.globalAlpha = watermark_opacity/100;
   
     // validate input
-    if (!watermark_file || !watermark_opacity || !watermark_postion) {
+    if (!watermark_file || !watermark_opacity || !watermark_position) {
         console.log("Watermark Tool: invalid input");
 
         // show toast (warning notification)
@@ -343,31 +343,31 @@ function addWaterMark() {
         let wmImg_height = (img.width * 10/100 * watermark_img.height) / watermark_img.width;
 
         watermark_img.onload = function() {
-            if (watermark_postion == "top-left") {    
+            if (watermark_position == "top-left") {    
                 ctx.drawImage(watermark_img, 0, 0, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "top-center") {
+            else if (watermark_position == "top-center") {
                 ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, 0, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "top-right") {
+            else if (watermark_position == "top-right") {
                 ctx.drawImage(watermark_img, canvas.width - wmImg_width, 0, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "middle-left") {
+            else if (watermark_position == "middle-left") {
                 ctx.drawImage(watermark_img, 0, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "middle-center") {
+            else if (watermark_position == "middle-center") {
                 ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "middle-right") {
+            else if (watermark_position == "middle-right") {
                 ctx.drawImage(watermark_img, canvas.width - wmImg_width, canvas.height/2 - wmImg_height/2, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "bottom-left") {
+            else if (watermark_position == "bottom-left") {
                 ctx.drawImage(watermark_img, 0, canvas.height - wmImg_height, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "bottom-center") {
+            else if (watermark_position == "bottom-center") {
                 ctx.drawImage(watermark_img, canvas.width/2 - wmImg_width/2, canvas.height - wmImg_height, wmImg_width , wmImg_height);
             }
-            else if (watermark_postion == "bottom-right") {
+            else if (watermark_position == "bottom-right") {
                 ctx.drawImage(watermark_img, canvas.width - wmImg_width, canvas.height - wmImg_height, wmImg_width , wmImg_height);
             }
             
@@ -385,10 +385,10 @@ function addText() {
     let text_font = document.getElementById("text_font").value;
     let text_size = parseInt(document.getElementById("text_size").value);
     let text_color = document.getElementById("text_color").value;
-    let text_postion = document.getElementById("text_postion").value;
+    let text_position = document.getElementById("text_position").value;
 
     // validate input
-    if (!text_string || !text_font || !text_size || !text_color || !text_postion) {
+    if (!text_string || !text_font || !text_size || !text_color || !text_position) {
         console.log("Text Tool: invalid input");
 
         // show toast (warning notification)
@@ -401,39 +401,39 @@ function addText() {
     ctx.font = text_size + "px " + text_font;
     ctx.fillStyle = text_color;
 
-    if (text_postion == "top-left") {    
+    if (text_position == "top-left") {    
         ctx.textAlign = "left";
         ctx.fillText(text_string, 10, text_size + 10);
     }
-    else if (text_postion == "top-center") {
+    else if (text_position == "top-center") {
         ctx.textAlign = "center";
         ctx.fillText(text_string, canvas.width/2, text_size + 10);
     }
-    else if (text_postion == "top-right") {
+    else if (text_position == "top-right") {
         ctx.textAlign = "right";
         ctx.fillText(text_string, canvas.width - 10, text_size + 10);
     }
-    else if (text_postion == "middle-left") {
+    else if (text_position == "middle-left") {
         ctx.textAlign = "left";
         ctx.fillText(text_string, 10, text_size + canvas.height/2);
     }
-    else if (text_postion == "middle-center") {
+    else if (text_position == "middle-center") {
         ctx.textAlign = "center";
         ctx.fillText(text_string, canvas.width/2, text_size + canvas.height/2);
     }
-    else if (text_postion == "middle-right") {
+    else if (text_position == "middle-right") {
         ctx.textAlign = "right";
         ctx.fillText(text_string, canvas.width - 10, text_size + canvas.height/2);
     }
-    else if (text_postion == "bottom-left") {
+    else if (text_position == "bottom-left") {
         ctx.textAlign = "left";
         ctx.fillText(text_string, 10, canvas.height - 10);
     }
-    else if (text_postion == "bottom-center") {
+    else if (text_position == "bottom-center") {
         ctx.textAlign = "center";
         ctx.fillText(text_string, canvas.width/2, canvas.height - 10);
     }
-    else if (text_postion == "bottom-right") {
+    else if (text_position == "bottom-right") {
         ctx.textAlign = "right";
         ctx.fillText(text_string, canvas.width - 10, canvas.height - 10);
     }
@@ -573,7 +573,7 @@ function updateCanvas()
 
 // <------------------------------------------------------------Image manipulation | Filters ------------------------------------------------>
 
-const brightnees_value = document.getElementById("brightness_value");
+const brightness_value = document.getElementById("brightness_value");
 const contrast_value = document.getElementById("contrast_value");
 const saturation_value = document.getElementById("saturation_value");
 const vibrance_value = document.getElementById("vibrance_value");
@@ -583,14 +583,14 @@ function brightness(controller) {
 	if (controller == "+") {
 		Caman("#canvas", img, function() {
             this.brightness(5).render(function() {
-                brightnees_value.value = parseInt(brightnees_value.value) + 5;
+                brightness_value.value = parseInt(brightness_value.value) + 5;
             });
         });
 	}
 	else if (controller == "-") {
 		Caman("#canvas", img, function() {
             this.brightness(-5).render(function() {
-                brightnees_value.value = parseInt(brightnees_value.value) - 5;
+                brightness_value.value = parseInt(brightness_value.value) - 5;
             });
         });
 	}
