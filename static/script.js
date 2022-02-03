@@ -650,6 +650,8 @@ function vibrance(controller) {
 	}
 }
 
+// <------------------------------------------------------------Image manipulation | Effects ------------------------------------------------>
+
 // sepia effect
 function sepia() {
     Caman("#canvas", img, function () {
@@ -793,6 +795,17 @@ function stackBlur() {
     });
 }
 
-// <---------------------------------------------------------------------------------------------------------------------------------->
-
-
+function carouselBtnDist() {
+    setTimeout(function (){
+        let y = document.getElementById("carousel-btn-prev");
+        let x = document.getElementById("carousel-btn-next");
+        
+    
+        distX = y.offsetLeft - x.offsetLeft;
+        distY = y.offsetTop - x.offsetTop;
+        let distance = Math.sqrt(distX*distX + distY*distY);
+    
+        console.log(distance);                  
+      }, 500);
+}
+    // <---------------------------------------------------------------------------------------------------------------------------------->

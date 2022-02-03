@@ -64,7 +64,7 @@
                           <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-filters" type="button">Filters</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-effects" type="button">Effects</button>
+                          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-effects" type="button" onclick="carouselBtnDist()">Effects</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent" style="pointer-events: none; opacity: 0.4;">
@@ -150,10 +150,10 @@
                                     <div id="watermark_tool" class="col-auto watermark tool">
                                         <input class="form-control" type="file" id="watermark_file">
                                     </div>
-                                    <div class="col-2 watermark tool">
+                                    <div class="col-sm-2 watermark tool">
                                         <input class="form-control" type="number" id="watermark_opacity" min="0" max="100" placeholder="Opacity">
                                     </div>
-                                    <div class="col-auto watermark tool">
+                                    <div class="col-sm-auto watermark tool">
                                         <div class="input-group">
                                             <span class="input-group-text">Position:</span>
                                             <select id="watermark_postion" class="form-select bg-light">
@@ -375,10 +375,10 @@
                                 </div>
 
                                 <!-- carousel controls-->
-                                <button class="carousel-control-prev" style="width: 50px; height: 50px;" type="button" data-bs-target="#effectsList" data-bs-slide="prev">
+                                <button id="carousel-btn-prev" class="carousel-control-prev" style="width: 50px; height: 50px;" type="button" data-bs-target="#effectsList" data-bs-slide="prev">
                                     <i class="bi bi-caret-left text-black" style="font-size: 30px;"></i>
                                 </button>
-                                <button class="carousel-control-next" style="width: 50px; height: 50px;" type="button" data-bs-target="#effectsList" data-bs-slide="next">
+                                <button id="carousel-btn-next" class="carousel-control-next" style="width: 50px; height: 50px;" type="button" data-bs-target="#effectsList" data-bs-slide="next">
                                     <i class="bi bi-caret-right text-black" style="font-size: 30px;"></i>
                                 </button>
                             </div>
@@ -399,7 +399,7 @@
                     
                     <!-- Control Buttons -->
                     <div class="row mt-3 justify-content-between align-items-center">
-                        <div class="col-auto m-2">
+                        <div class="col-sm-auto m-2">
                             <!-- Revert Button-->
                             <span class="tt" data-bs-placement="bottom" title="Revert">
                                 <div>
@@ -411,7 +411,7 @@
                         </div>
 
                         <!-- Zoom In/Out Buttons-->
-                        <div class="col-auto m-2" id="zoomBtns" style="pointer-events: none; opacity: 0.4;">
+                        <div class="col-sm-auto m-2" id="zoomBtns" style="pointer-events: none; opacity: 0.4;">
                             <span class="tt" data-bs-placement="bottom" title="Zoom">
                                 <div class="input-group border rounded">
                                     <button id="zoomOutBtn" class="btn btn-primary" onclick="zoomOut()">
@@ -426,7 +426,7 @@
                         </div>
 
                         <!-- Download Button-->
-                        <div class="col-auto m-2">
+                        <div class="col-sm-auto m-2">
                             <span class="tt" data-bs-placement="bottom" title="Download">
                                 <div>
                                     <button class="btn btn-outline-primary" id="download_sidebar" type="button" data-bs-toggle="offcanvas" data-bs-target="#download_menu" aria-controls="offcanvasExample">
@@ -479,7 +479,7 @@
                 <div class="display-5 text-muted ms-5">How To Use</div>
                 <div class="container-xxl py-3">
                     <div class="row" id="theight">
-                        <div class="col-sm-2 mb-auto bg-white shadow me-4 py-2" id="tableOfContents">
+                        <div class="col-sm-2 mb-2 mb-sm-auto bg-white shadow me-4 py-2" id="tableOfContents">
                             <p class="fw-bold border-bottom mb-1 fs-5">Table Of Contents</p>
                             <ul class="list-unstyled ps-0">
                                 <li class="mb-1">
