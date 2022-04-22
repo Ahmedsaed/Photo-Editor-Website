@@ -8,7 +8,13 @@
 ### Description:
 A photo editing website.
 
-This project consists of 1 html file, css file, javascript file, 20 image thumbnails and some sample images for testing purpose.
+> This project was my final project for CS50 Course
+
+### Project Content:
+- html file
+- css file
+- javascript file
+- 20 image thumbnails
 
 The javascript file handles  all of the image manipulation and contains all of the website logic.
 
