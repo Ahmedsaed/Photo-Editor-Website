@@ -62,7 +62,6 @@ uploadBtn.addEventListener("change", () => {
             dwarning("Unsupported file format");
             return;
         }
-      
 
         // Read data as URL
         reader.readAsDataURL(file);
@@ -292,7 +291,7 @@ function useTool() {
         cropImg();
     }
     else if (tool == "flip_tool") {
-        flipImg();
+        flipImg();  
     }
     else if (tool == "text_tool") {
         addText();
@@ -795,6 +794,10 @@ function stackBlur() {
     });
 }
 
+window.addEventListener("resize", () => {
+    carouselBtnDist();
+});
+
 function carouselBtnDist() {
     setTimeout(function (){
         let y = document.getElementById("carousel-btn-prev");
@@ -953,9 +956,5 @@ function setCarouselElements(distance) {
         console.log(n, carouselElements.length)
     }
 }
-
-window.addEventListener("resize", () => {
-    carouselBtnDist();
-});
 
     // <---------------------------------------------------------------------------------------------------------------------------------->
